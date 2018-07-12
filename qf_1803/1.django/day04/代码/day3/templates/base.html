@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>
+        {% block title %}
+        {% endblock %}
+    </title>
+    {% block extCSS %}
+    {% endblock %}
+</head>
+{% block index_frameset %}
+{% endblock %}
+<body {% block body_id %} {% endblock %}>
+{% block content %}
+{% endblock %}
+
+{% block extJS %}
+    <script type="text/javascript" src="/static/js/jquery.min.js"></script>
+{% endblock %}
+</body>
+</html>

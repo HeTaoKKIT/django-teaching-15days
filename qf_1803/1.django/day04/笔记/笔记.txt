@@ -1,0 +1,45 @@
+
+查询班级详情
+
+/app/grade/?ddd=1$fff
+
+GET /app/grade/1/
+DELETE  /app/grade/1/
+
+PATCH /app/grade/1/  修改(不全改)
+PUT /app/grade/1/  修改(全改)
+
+POST /app/grade/   创建
+
+PATCH /app/student/1/
+
+
+get请求
+$.get(url, function(data){
+	
+	alert(data)
+});
+
+post请求
+$.post(url, {'s_name':'妲己'}, function(data){
+	
+	alert(data)
+});
+
+
+
+csrf = 'Qh70n5u2GR2T8RboCXRKjbk9CIUWlhIp7OlPo3xEiDopfS1SKJuQPOpChhAv2L78'
+
+$.ajax({
+	url:'',
+	data:{'s_name':'妲己'},
+	dataType:'json',
+	headers:{'X-CSRFToken': csrf}	
+	type:'POST PUT DELETE PATCH GET',
+	success:function(data){
+		alert(data)
+	},
+	error:function(data){
+		alert(data)
+	}
+});
