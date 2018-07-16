@@ -1,0 +1,28 @@
+
+第一天：
+
+项目：
+	django-admin startproject ajx
+	python manage.py startapp users
+	python manage.py startapp app
+
+环境：
+	virtualenv --no-site-packages -p D:\python3\python.exe ajxenv
+
+debug run模式的配置
+
+模型：
+	1. 使用migrate初始化django的自带的表
+	2. 自定义的表使用sql去创建
+
+视图：
+	1. 首页展示
+	2. 登录注册  UserTicket 中间件
+	3. 注销
+
+
+第五天：
+
+	部署上线
+
+	centos 部署
