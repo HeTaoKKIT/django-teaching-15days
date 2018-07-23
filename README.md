@@ -37,3 +37,6 @@
 	1. django笔记整理
   - [第二周第四天](qf_1803/1.django/day04/笔记/笔记.txt)
   - [第二周第六天](qf_1803/1.django/day06/笔记/笔记.txt)
+  	
+	2. flask笔记整理
+  - [第一周第一天](qf_1803/2.flask/day01/笔记/笔记.txt)

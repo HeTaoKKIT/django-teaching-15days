@@ -1,0 +1,76 @@
+
+1. 最小的web应用
+
+from flask import Flask
+
+app = Flask(__name__)
+
+@app.route('/')
+def hello():
+	return 'hello world'
+
+if __name__ == '__main__':
+	app.run()
+
+默认： 127.0.0.1：5000
+
+优化： app.run(debug=True, host='0.0.0.0', port=80)
+
+2. MVC模式中的C提炼出去
+
+C： controller---》业务逻辑---》》 views.py
+
+定义views.py：
+
+	@app.route('/')
+	def hello():
+		return 'hello world'
+
+3. 使用蓝图管理我们的路由
+
+pip install flask_bluprint
+
+使用蓝图： 
+	第一步： 初始化并管理我们的的路由（替换我们的@app.route）
+		blue = Blueprint('first', __name__)
+
+		@blue.route('/')
+			def hello():
+				return 'hello world'
+
+	第二部： 绑定蓝图到Flask的对象app上
+		app.register_blueprint(blue)
+
+4. python的web框架
+
+web.py  flask  django  tornado twisted sanic
+
+
+爬虫：
+
+urllib scrapy bs lxml 验证码，滑动模块
+
+5. 请求方式定义
+
+methods = ['GET', 'PUT']
+
+6. 路由规则
+
+接收参数类型：
+
+string： 默认的。可写可不写
+int：整形
+float：浮点
+path：路径
+uuid： uuid
+
+
+7. 获取请求参数
+
+GET： request.args.get('')
+POST: request.form.get('')
+
+响应：
+
+make_response('<h3></h3>', 200)
+
