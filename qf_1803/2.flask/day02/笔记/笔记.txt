@@ -7,5 +7,33 @@
 	abort(400)
 	errorhandler(400)
 
+3. 模板
+
+挖坑/填坑  {% block title %} {% endblock %}
+继承 {% extends ‘base.html’ %}
+
+包含 {% include 'xxx.html' %}
+
+继承之前挖坑的内容  {{ super() }}
+
+
+4. static
+
+flask:
+第一种：  /static/css/xxx.css
+第二种：  {% url_for('static', filename='css/xxx.css') %}
+
+
+django:
+第一种：  /static/js/xxx.js
+第二种：  {% static 'js/xxx.js' %}
+
+5. session
+
+购物车
+
+在没有登录，添加到购物车的商品，商品信息放在cookie中
+
+登录后，将cookie中的商品信息，添加到用户和购物车对应模型中
 
 

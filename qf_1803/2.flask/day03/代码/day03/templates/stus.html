@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <table>
+        <tr>
+            <th>姓名</th>
+            <th>年龄</th>
+        </tr>
+        {% for stu in stus %}
+            <tr>
+                <td>{{ stu.s_name }}</td>
+                <td>{{ stu.s_age }}</td>
+            </tr>
+        {% endfor %}
+    </table>
+
+{% endblock %}

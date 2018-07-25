@@ -1,0 +1,107 @@
+
+1. 宏定义macro
+
+{% from 'fucntion.html' import hello %}
+
+2. for 
+
+{% for i in list1 %}
+	{{ i }}
+{% endfor %}
+
+3. if
+
+ifequal 在jinja2中没有
+
+{% if i == 1 %}
+
+{% else %}
+
+{% endif %}
+
+3. loop
+
+forloop.counter
+forloop.counter0
+forloop.revconter
+forloop.revconter0
+
+序号： loop.index
+反转： loop.revindex
+
+第一次：loop.fitst
+最后一次：loop.last
+
+4. 过滤器
+
+safe:将标签渲染
+striptags：将标签去掉
+length：计算长度
+capitalize： 首字母大写
+lower：小写
+upper：大写
+
+
+5. sqlalchemy配置
+
+第一步：定义模型
+
+db = SQLALchemy()
+
+class Student(db.Model):
+
+	pass
+
+primary_key = True
+autoincrement = True
+nullable = True
+
+Integer
+String(20)
+
+第二步： 初始化db和app
+
+db.init_app(app)
+
+第三步： 马上配置数据库
+
+SQLALCHEMY_DATABASE_URI: mysql+pymysql://root:password@127.0.0.1:3306/flask3
+
+SQLALCHEMY_TRACK_MODIFICATIONS = Fasle
+
+第四步：
+
+db.create_all()
+
+
+
+6. CRUD
+
+增： 
+db.session.add()
+db.session.commit()
+
+查：
+
+模型.query.all() --->  list
+模型.query.filter(模型.字段==字段值)  ---> basequery
+模型.query.filter(模型.字段==字段值).all()  ---> list
+
+模型.query.filter_by(字段=字段值)
+
+删：
+
+db.session.delete(对象)
+db.session.commit()
+
+改：
+对象 = 模型.query.get(id)
+对象.字段 == 字段值
+
+db.session.add(对象)
+db.session.commit()
+
+
+模型.query.filter().update({‘’：‘’})
+db.session.commit()
+
