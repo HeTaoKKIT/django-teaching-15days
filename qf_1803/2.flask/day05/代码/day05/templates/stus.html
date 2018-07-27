@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>姓名</th>
+            <th>年龄</th>
+            <th>班级</th>
+            <th>操作</th>
+        </tr>
+        {% for stu in stus %}
+            <tr>
+                <td>{{ stu.id }}</td>
+                <td>{{ stu.s_name }}</td>
+                <td>{{ stu.s_age }}</td>
+                <td>{{ stu.grade.g_name }}</td>
+                <td>
+                    <a href="/app/stu_add_grade/{{ stu.id }}/">添加班级</a>
+                    |
+                    <a href="/app/stu_add_course/{{ stu.id }}/">添加课程</a>
+                    |
+                    <a href="/app/sel_course/{{ stu.id }}/">查看课程</a>
+                </td>
+            </tr>
+        {% endfor %}
+    </table>
+        总页数： {{ paginate.pages }}
+        {% if paginate.has_prev %}
+            <a href="/app/selstu/?page={{ paginate.prev_num }}">上一页</a>
+        {% endif %}
+        {% for i in paginate.iter_pages() %}
+            <a href="/app/selstu/?page={{ i }}">{{ i }}</a>
+        {% endfor%}
+        {% if paginate.has_next %}
+            <a href="/app/selstu/?page={{ paginate.next_num }}">下一页</a>
+        {% endif %}
+        当前页数：{{ paginate.page }}
+{% endblock %}

@@ -1,0 +1,109 @@
+
+1. 最小web
+
+from flask import Flask
+
+app = Flask(__name__)
+
+@app.route('/')
+def hello():
+	return 'hello'
+
+if __name__ == '__main__':
+	app.run()
+
+
+2. 定义蓝图
+
+blue = Blueprint('first', __name__)
+
+@blue.route('/')
+def hello():
+	return 'hello'
+
+app.register_blueprint(blue, url_prefix='/app')
+
+后端：url_for('fitst.函数名', id=1)
+前端：{{ url_for('first.函数名'，id=1) }}
+
+3. flask_script管理app
+
+from falsk_script import Manager
+
+manage = Manager(app)
+
+manage.run()
+
+python xxx.py  runserver -d -p -h
+
+
+4. flask_session
+
+redis sqlalchemy memached filesystem
+
+SESSION_TYPE ---> redis
+SESSION_REDIS ----> redis.Redis(host='', port='')
+
+cookie中就生成session值，在redis中也生成对应cookie中相同的session值
+
+5. flask_sqlalchemy
+
+db = SQLALchemy()
+
+class User(db.Model):
+	id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+	name = db.Column(db.String(20))
+
+	___tablename__ = 'user'
+
+在manage.py中db.init_app(app)
+
+创建： db.create_all()
+删除： db.drop_all()
+
+
+db.session.add()
+db.session.add_all([对象1，对象2])
+db.session.delete(对象)
+db.session.commit()
+
+执行原生sql：
+	db.session.execute(sql)
+
+一对多：
+	class 模型1：
+		s1 = db.relationship(模型2，backref='xx')
+
+	class 模型2：
+		s2 = db.Column(db.ForeignKey('模型1的表名.id'))
+
+	知道模型1对象，找模型2对象： 模型1.s1
+	知道模型2对象，找模型1对象： 模型2.xx
+
+
+多对多：
+	
+	class 模型1：
+		id = db.Column(primary_key=True)
+		m1 = db.relationship(模型2，secondary=m1_m2, backref=yy)
+		
+
+	class 模型2：
+		id = db.Column(primary_key=True)
+		
+	m1_m2 = db.Table(m1_m2,
+		db.Column('m1_id', db.ForeignKey(模型1的表名.id)),
+		db.Column('m2_id', db.ForeignKey(模型2的表名.id))
+		)
+
+查询：
+	知道模型1对象，找模型2对象： 模型1.m1
+	知道模型2对象，找模型1对象： 模型2.yy
+
+创建：
+	模型1对象.m1.append(模型2对象)
+	或则
+	模型2对象.yy.append(模型1对象)
+	db.session.commit()
+删除：
+	模型1对象.m1.remove(模型2对象)

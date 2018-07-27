@@ -1,0 +1,12 @@
+
+{% extends 'base.html' %}
+
+{% block content %}
+    {% for course in courses %}
+        {{ course.c_name }}
+        <a href="/app/del_course/{{ id }}/?c_id={{ course.id }}">删除课程</a>
+        <br>
+    {% else %}
+        没有课程，请选择<a href="/app/stu_add_course/{{ id }}/">添加课程</a>
+    {% endfor %}
+{% endblock %}

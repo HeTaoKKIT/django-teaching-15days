@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    我是index
+{% endblock %}
+
+{% block content %}
+
+    {% from 'functions.html' import hello %}
+    {% from 'functions.html' import show_goods %}
+
+    {{ hello() }}
+    {{ hello() }}
+
+    {{ show_goods(1, '可爱多', 5) }}
+    {{ show_goods(2, '梦龙', 10) }}
+    {{ show_goods(3, '棒棒棒', 1) }}
+
+
+    {{ list1 }}
+
+    {% for i in list1 %}
+        {{ i }}
+        {% if i == 1 %}
+            美女
+        {% endif %}
+    {% endfor %}
+
+<!-- 偶数展示为红色，奇数展示为绿色 -->
+    <br>
+    {% for i in list1 %}
+        {% if i%2 == 0 %}
+            <p style="color:red;">{{ i }}</p>
+        {% else %}
+            <p style="color:greed;">{{ i }}</p>
+        {% endif %}
+    {% endfor %}
+    <br>
+<!-- 第一个参数展示为红色，最后一个参数展示为绿色 -->
+
+    {% for i in list1 %}
+        {{ loop.index }}
+        {{ loop.revindex }}
+        {% if loop.first %}
+            <p style="color:red;">{{ i }}</p>
+        {% endif %}
+        {% if loop.last %}
+            <p style="color:green;">{{ i }}</p>
+        {% endif %}
+        <br>
+    {% endfor %}
+    <br>
+
+    {{ p1|safe }}
+    {{ p1|length }}
+    <br>
+    {{ p2|striptags }}
+    {{ p2|length }}
+
+    <br>
+    {% for f in config %}
+        {{ f|lower|capitalize|length }}
+        <br>
+    {% endfor %}
+
+{% endblock %}
+
