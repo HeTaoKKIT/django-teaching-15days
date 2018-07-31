@@ -1,0 +1,63 @@
+1. 验证码
+
+	用户第一次访问网站的时候，首先在cookie中存一个session值，对应在redis中也存session值。
+
+	生成验证码： 需要在redis中的session中设置该验证码
+
+	验证验证码： 首先页面提交验证码，然后校验页面提交的验证码和后端session中存的验证码是否相同，如果相同则验证码成功。
+
+思考：
+
+	session中验证码失效，删除
+
+2. 注册登录
+	
+	登录成功情况：
+		首先：手机号和密码都验证OK。
+		然后：session中存入user_id
+
+	登录验证:
+		使用装饰器
+
+3. 个人中心---获取个人信息
+
+	获取用户名，电话，头像。
+
+
+4. 修改用户头像和用户名
+
+阻止默认行为：
+
+	$(this).ajaxSubmit(function(e){
+		e.preventDefault()
+
+	})
+
+	$(this).ajaxSubmit(function(){
+
+
+		return false;
+	})
+
+
+5. 实名认证
+
+	修改用户的id_name和id_card
+
+
+6. 接口文档
+
+	a) url请求地址
+	b）请求方式 GET POST PATCH PUT DELETE
+	c）请求参数
+	d）响应 
+		{'code': 1011, 'msg': '身份证信息错误'}
+
+		code：状态码
+		msg：错误信息
+
+7. 作业
+	接口文档 10个
+	我的房源--->房屋信息展示
+	发布房源--->房屋添加
+
