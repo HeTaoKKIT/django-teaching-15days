@@ -1,0 +1,39 @@
+
+1. 发布房源
+
+	House模型。存房屋信息
+	HouseImage模型。
+
+2. 详情
+
+	House模型。获取房屋详细信息
+
+3. template.js使用
+
+	var html_script = template('script_id', {ohouse: data.house})
+	$('#xx').heml(html_script)
+
+	{% raw %}
+
+		<script type="text.html" id="script_id">
+
+			{{ each ohouse.image as image }}
+				{{ image }}
+
+			{{ /each }}
+
+			{{ ohouse.title }}
+		</script>
+
+	{% endraw %}
+
+4. 预约订单
+
+
+	Order模型
+	User模型
+	House模型
+
+	
+
+
