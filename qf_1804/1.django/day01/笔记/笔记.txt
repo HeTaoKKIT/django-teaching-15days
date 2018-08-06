@@ -1,0 +1,47 @@
+
+项目组：
+1. 产品，2个人 ----> 提需求，设计原型图
+2. 测试，1个人 ----> 功能测试
+3. 前端，2以上 ----> 渲染页面，调用后端提供的数据
+
+https://movie.douban.com/j/search_subjects?type=movie&tag=%E7%83%AD%E9%97%A8&sort=recommend&page_limit=20&page_start=20
+
+4. 后端，2以上----> 获取数据，返给前端
+5. UI，1个人 ----> 设计页面
+6. 数据库 ，1个人
+
+公司分类：
+1. 业务公司
+2. 技术公司 知道创于，云和恩墨
+3. 销售型公司
+
+
+Django 3周。前两周基础+项目1周
+Flask 2周。第一周基础+1周项目
+爬虫 2周
+
+AI 
+
+3. 主流框架
+Django Flask tornado web.py twisted sanic
+
+4. MVC
+
+M：
+模型xxx中定义tag字段，sort字段
+
+C：写业务逻辑
+?type=movie&tag=热门&sort=recommend&page_limit=20&page_start=20
+
+sql： select * from xxx where tag=热门 and sort=recommend limit 20
+
+V: 视图，就是页面
+
+5. 安装django
+
+pip install django==1.11
+pip install pymysql
+
+6. 创建django项目
+
+
