@@ -1,0 +1,89 @@
+1. MVC
+M: ORM,通过模型的操作映射到数据库中
+V：页面，渲染给用户看的页面
+C：业务逻辑
+
+MVT：
+M： 数据存取层
+V(views)：业务逻辑
+T(template)：模板，也就是页面
+
+2. 
+a) virtualenv
+virtualenv --no-site-packages -p D:\python3\python.exe djenv
+
+b) python -m venv djenv
+
+python2和python3
+	print()
+
+	try:
+
+	except Exception,e:
+		print(e)
+
+	except Exception as e:
+		print(e)
+
+	range(10)
+	dict.keys()
+
+3. django
+
+python3.7.0 ---> 支持django2.0.7
+python3.6.x ---> django 1.11
+
+4. 创建工程
+django-admin startproject day01
+__init__.py  
+	import pymysql
+	pymysql.installed_as_MySqldb
+__settings__.py
+	BASE_DIR
+	INSTALLED_APP
+	DATABASES
+__urls__.py
+	url(r'hello1/', views.helloworld)
+	url(r'hello2/', views.helloworld)
+	# 127.0.0.1:8000/hello/
+__uwsgi__.py
+
+5. 创建应用
+python manage.py startapp app1
+__init__.py
+apps.py
+admin.py
+test.py
+models.py
+	定义模型
+views.py
+	业务逻辑，视图函数
+
+6. 运行项目
+python manage.py runserver 0.0.0.0:8080
+python manage.py runserver 8080
+
+可以只写端口
+或则
+端口和ip都写
+
+7. 数据库迁移
+第一次：
+	python manage.py migrate
+
+后面再次迁移：
+	python manage.py makemigrations
+	python manage.py migrate
+
+8. 管理后台
+用户名和密码， auth_user
+
+python manage.py createsupersuer
+
+
+作业：
+1. 新增学生表字段，语文和数学字段。并添加字段的值
+2. 查询语文成绩最大的学生信息
+3. 查询比id=1的学生的语文成绩大10分的学生的信息
+4. 查询语文成绩大于60，或者年龄小于20的学生信息
+5. 整理笔记，运算符。get，filter区别等等，后面好加入到博客网站中。
