@@ -1,0 +1,58 @@
+
+昨日回顾
+
+
+1. 查询
+查询所有：模型名.objects.all()
+查询满足条件： filter(条件1，条件2，条件3)
+			  filter(条件1).filter(条件2).filter(条件3)
+查询不满足条件： exclude(条件1)
+获取单条信息： 
+	a) 返回结果不同：
+				filter(id=1)或则filter(pk=1) ==> queryset对象
+			  	get(id=1)或则get(pk=1) ==> Student Object
+	b) 获取不到结果：
+		filter(id=100) ===> 结果为空
+		get(id=100) == > id=100不存在，get方法直接报错
+	c) 获取的结果有多条：
+		filter(s_age=15)  ===> 都有结果的
+		get(s_age=15) ===> 报错，提示返回的数量超过一条
+
+2. 排序
+
+升序：
+	模型名.objects.all().order_by('id')
+降序：
+	模型名.objects.all().order_by('-id')
+
+3. 运算符
+icontains：大小写不敏感
+contains：大小写敏感
+模型名.objects.filter(s_name__icontains='小')
+
+startswith: 以什么开始
+endswith：以什么结束
+
+gt gte: 大于、大于等于
+lt lte： 小于、小于等于
+
+in：在范围之内
+
+
+昨日作业：
+1. 新增学生表字段，语文和数学字段。并添加字段的值
+Decimal()
+2. 查询语文成绩最大的学生信息
+3. 查询比id=1的学生的数学成绩大10分的学生的信息
+4. 查询语文成绩大于60，或者年龄小于20的学生信息
+5. 整理笔记，运算符。get，filter区别等等，后面好加入到博客网站中。
+
+
+作业：
+
+1. 创建书籍和作者的表，定义关联关系，多对多、一对多
+2. 添加书籍数据和作者数据，关联
+3. 通过书籍查询作者
+4. 通过作者查询书籍
+5. 删除指定作者的某一本书籍
+
