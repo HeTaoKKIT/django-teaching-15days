@@ -1,0 +1,75 @@
+昨日回顾：
+
+1. 查询或则条件/不等于条件
+并且： filter(条件1，条件2，条件3)
+或者： filter(Q(条件1) | Q(添加2))
+取反： filter(~Q(条件1) | Q(条件2))
+
+2. A字段和B字段进行算数运算
+F()
+filter(shuxue__gt = F('yuwen') + 10)
+
+3. 一对第一
+
+class B():
+	id = models.autoFiled(primary_key=True)
+
+class A():
+	b = models.OneToOneField(B)
+
+有A的对象，查询B
+a = A()
+b= a.b
+b_id = a.b_id
+
+有B的对象，反查A
+
+b = B()
+a = b.a
+
+4. 一对多
+
+class B():
+	id = models.autoFiled(primary_key=True)
+
+class A():
+	b = models.ForeignKey(B)
+
+一对多和一对一的关系： 一对多中外键是唯一的，那就成了一对一
+
+
+有A的对象，查询B
+a = A()
+b =a.b
+
+有B的对象，反查A
+b = B()
+a = b.a_set.all()
+
+5. 多对多
+
+class B():
+	id = models.autoFiled(primary_key=True)
+
+class A():
+	b = models.ManyToManyField(B)
+
+生成的表有三张，A表，B表，A_B表
+
+
+有A的对象，查询B
+a = A()
+b =a.b
+
+有B的对象，反查A
+b = B()
+a = b.a_set.all()
+
+插入数据
+a = A.objects.get(pk=1)
+b = B.objects.get(pk=1)
+a.b.add(b)
+b.a_set.add(a)
+
+删除数据
+b.a_set.remove(a)

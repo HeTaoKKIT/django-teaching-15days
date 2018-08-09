@@ -1,0 +1,37 @@
+
+{% extends 'base.html' %}
+
+{% block title %}
+    学生列表页面
+{% endblock %}
+
+
+{% block content %}
+    <p>我是学生列表页面</p>
+
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>姓名</th>
+            <th>年龄</th>
+            <th>班级</th>
+            <th>操作</th>
+        </tr>
+        {% for stu in stus %}
+            <tr>
+                <td>{{ stu.id }}</td>
+                <td>{{ stu.s_name }}</td>
+                <td>{{ stu.s_age }}</td>
+                <td>{{ stu.g.g_name }}</td>
+                <td>
+                    <a href="/app/deleteStu/?stu_id={{ stu.id }}">删除</a>
+                    |
+                    <a href="/app/updateStu/?stu_id={{ stu.id }}">编辑</a>
+                    |
+                    <a href="/app/addStuCourse/{{ stu.id }}/">添加课程</a>
+                </td>
+            </tr>
+        {% endfor %}
+    </table>
+
+{% endblock %}

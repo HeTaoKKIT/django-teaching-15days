@@ -1,0 +1,48 @@
+
+{% extends 'base.html' %}
+
+{% block title %}
+    首页
+{% endblock %}
+
+{% block extCss %}
+    {{ block.super }}
+{% endblock %}
+
+{% block content %}
+
+    <p>我是首页</p>
+
+    {{ stus }}
+    <br/>
+    {% for stu in stus %}
+        编号: {{ forloop.revcounter}}
+        ID: {{ stu.id }}
+        {% if forloop.counter == 1 %}
+            <span style="color:red;"> 学生：{{ stu.s_name|upper|lower }}</span>
+        {% else %}
+            <span style="color:yellow;">姓名：{{ stu.s_name|upper|lower }}</span>
+        {% endif %}
+
+        {% ifequal forloop.counter 1 %}
+            <span style="font-weight:bold;">年龄：{{ stu.s_age }}</span>
+        {% else %}
+            <span>年龄：{{ stu.s_age }}</span>
+        {% endifequal %}
+
+        语文成绩：{{ stu.yuwen|add:10 }}
+        数学成绩：{{ stu.shuxue|add:-10 }}
+        班级：{{ stu.g.g_name }}
+        {% for course in stu.course_set.all %}
+            课程: {{ course.c_name }}
+        {% endfor %}
+        创建时间：{{ stu.create_time|date:'Y-m-d h:m:s' }}
+        {% if stu.s_sex %}
+            性别：男
+        {% else %}
+            性别：女
+        {% endif %}
+        <br/>
+    {% endfor %}
+
+{% endblock %}
