@@ -1,0 +1,119 @@
+
+昨日回顾
+
+1. MVT
+T： templates
+
+a) 配置
+settings.py中 TEMPLATES变量中DIRS指定templates的目录地址
+
+‘DIRS’:[os.path.join(BASE_DIR, 'templates')]
+
+b) 创建templates文件夹，和应用app和工程项目是同一级
+
+c) 使用。在views中方法返回页面。
+	data = {
+		'stus': stus
+	}
+	render(request, '页面', data)
+
+d) 
+for循环， 
+if
+ifequal
+forloop.counter
+forloop.counter0
+forloop.revcounter
+forloop.revcounter0
+forloop.first
+forloop.last
+
+{% for xx in xxx %}
+
+{% endfor %}
+
+{% if xxx==1 %}
+
+{% endif %}
+
+e) 过滤器
+
+{% for stu in stus %}
+
+	{{ stu.s_name|lower }}
+	{{ stu.s_name|upper }}
+	{{ stu.s_age|add:10 }}
+	{{ stu.s_age|add:-10 }}
+	{{ stu.create_time|date:'Y-m-d h:m:s' }}
+
+{% endfor %}
+
+f) 静态css、js、images
+
+settings.py中STATIC_URL = '/static/',
+添加STATICFILES_DIRS =[ os.path.join(BASE_DIR, 'static') ]
+
+g) 引用css、js、images
+
+第一种：
+<link rel='stylesheet' href='/static/css/xxx.css'>
+
+第二种：
+{% load static %}
+<link rel='stylesheet' href='{% static 'css/xxx.css' %}'>
+
+
+2. 请求 
+
+request
+
+http: get请求
+	request.GET
+
+http: post请求	
+	request.POST
+
+request.method ==> GET, POST
+
+3. 挖坑、填坑
+
+base.html
+
+	<!doctype html>
+	<html>
+		<head>
+			<title>
+				{% block title %}
+
+				{% endblock %}
+				{% block extCss %}
+
+				{% endblock %}
+			</title>
+		</head>
+		<body>
+			{% block content %}
+
+			{% endblock %}
+		</body>
+	</html>
+
+
+index.html
+
+{% extends 'base.html' %}
+
+{% block title %}
+	我是首页
+{% endblock %}
+
+{% block extCss %}
+	{{ block.super }}
+{% endblock %}
+
+
+
+作业：
+1. 前台/后台模板修改，改成block继承
+2. 定义文章模型
+
