@@ -1,0 +1,27 @@
+
+昨日回顾：
+
+1. 登录 login
+
+Django自带登录注册
+
+a) 从页面接收用户名(username)和密码(password)，用于校验是否能从auth_user表中查询到相关用户的信息
+
+user = auth.authenticate(request,username=username, password=password)
+
+结论：如果user存在，说明页面填写的用户名和密码正确。反正填写的用户名或者密码有错误。
+
+b）登录
+
+auth.login(request, user)
+
+c) 注销
+
+auth.logout(request)
+
+d) login_requeired()
+默认没有登录的时候，去访问视图，会跳转到/account/login/地址上去
+
+settings.py中配置没有登录的时候跳转的地址： LOGIN_URL = '/backweb/login/'
+
+
