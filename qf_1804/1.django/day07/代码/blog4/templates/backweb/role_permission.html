@@ -1,0 +1,35 @@
+
+{% extends 'backweb/base_main.html' %}
+
+{% block title %}
+    后台管理系统---用户列表
+{% endblock %}
+
+{% block extCss %}
+  {% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'backweb/css/style.css' %}">
+{% endblock %}
+
+{% block extJs %}
+<script src="{% static 'backweb/js/jquery.js' %}"></script>
+{% endblock %}
+
+{% block content %}
+<section class="rt_wrap content mCustomScrollbar">
+    <form action="" method="post">
+        {% csrf_token %}
+        <div class="rt_content">
+
+            角色：<input type="text" name="role_name">
+            <br>
+            权限：
+            {% for per in permissions %}
+                <input type="checkbox" name="pers" value="{{ per.p_name }}">{{ per.p_name }}
+            {% endfor %}
+            <br>
+            <input type="submit" value="提交">
+        </div>
+    </form>
+</section>
+
+{% endblock %}

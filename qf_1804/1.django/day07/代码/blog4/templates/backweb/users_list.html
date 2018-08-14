@@ -1,0 +1,46 @@
+
+{% extends 'backweb/base_main.html' %}
+
+{% block title %}
+    后台管理系统---用户列表
+{% endblock %}
+
+{% block extCss %}
+  {% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'backweb/css/style.css' %}">
+{% endblock %}
+
+{% block extJs %}
+<script src="{% static 'backweb/js/jquery.js' %}"></script>
+{% endblock %}
+
+{% block content %}
+<section class="rt_wrap content mCustomScrollbar">
+ <div class="rt_content">
+
+      <table class="table">
+       <tr>
+        <th>编号</th>
+        <th>用户名</th>
+        <th>超管</th>
+        <th>角色</th>
+        <th>操作</th>
+       </tr>
+       {% for user in users %}
+           <tr>
+                <td class="center">{{ user.id }}</td>
+                <td class="center">{{ user.username }}</td>
+                <td class="center">{{ user.is_superuser }}</td>
+                <td class="center">{{ user.u_r.r_name }}</td>
+                <td class="center">
+                     <a href="" title="编辑" class="link_icon">&#101;</a>
+                     <a href="" title="删除" class="link_icon">&#100;</a>
+                </td>
+           </tr>
+      {% endfor %}
+      </table>
+
+ </div>
+</section>
+
+{% endblock %}

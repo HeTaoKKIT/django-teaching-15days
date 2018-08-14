@@ -1,0 +1,53 @@
+
+{% extends 'backweb/base_main.html' %}
+
+{% block title %}
+    后台管理系统--文章添加页面
+{% endblock %}
+
+{% block extCss %}
+  {% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'backweb/css/style.css' %}">
+{% endblock %}
+
+{% block extJs %}
+<script src="{% static 'backweb/js/jquery.js' %}"></script>
+{% endblock %}
+
+
+{% block content %}
+<section class="rt_wrap content mCustomScrollbar">
+ <div class="rt_content">
+      <div class="page_title">
+       <h2 class="fl">文章详情</h2>
+      </div>
+     <form action="" method="post" enctype="multipart/form-data">
+     {% csrf_token %}
+     <section>
+      <ul class="ulColumn2">
+       <li>
+        <span class="item_name" style="width:120px;">用户名：</span>
+        <input type="text" name="username" class="textbox textbox_295" placeholder="用户名..."/>
+        <!--<span class="errorTips">错误提示信息...</span>-->
+       </li>
+       <li>
+        <span class="item_name" style="width:120px;">密码：</span>
+        <input type="passowrd" name="password1" class="textbox textbox_295" placeholder="密码..."/>
+        <!--<span class="errorTips">错误提示信息...</span>-->
+       </li>
+        <li>
+        <span class="item_name" style="width:120px;">确认密码：</span>
+        <input type="passowrd" name="password2" class="textbox textbox_295" placeholder="确认密码..."/>
+        <!--<span class="errorTips">错误提示信息...</span>-->
+       </li>
+
+       <li>
+        <span class="item_name" style="width:120px;"></span>
+        <input type="submit" class="link_btn"/>
+       </li>
+      </ul>
+     </section>
+     </form>
+ </div>
+</section>
+{% endblock %}

@@ -1,0 +1,83 @@
+
+昨日回顾：
+
+1. 文件上传---> 图片
+
+a）安装：pip install Pillow
+
+b）模型中使用:
+    image_url = models.ImageFileld(upload_to='upload')
+数据库中： image_url为varchar类型，存的是图片的地址
+
+c) 页面中选择图片
+	<form action='' method='' enctype='multipart/form-data'>
+		<input type='file' name='img'>
+	</form>
+d) 后端获取图片
+	拿取图片的内容不是从get请求： request.GET， 也不是从post请求： request.POST
+
+	而是从request.FILES中获取
+
+e) 设置settings.py中的media路径
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+f) 展示图片
+
+<img src='/media/{{ image_url }}'>
+
+g) 配置url，在工程目录的url中配置media的信息
+
+from django.contrib.staticfiles.urls import static
+
+urlpatterns += static(setting.MEDIA_URL，
+					document_root= setting.MEDIA_ROOT)
+
+2. 分页
+a) 写sql：  select * from article where xxxx offset 1 limit 2
+
+b) 通过切片进行分析
+模型名.objects.all()[头下标:尾下标]
+
+c）Paginator
+articles = 模型名.objects.all() ===>> 如果有31条数据
+paginator = Paginator(articles，10)
+page = paginator.page(1)
+
+d) 页面中展示分页的信息
+
+展示页码： {% for num in page.paginator.page_range %}
+
+是否有上一页： page.has_previous
+如果有上一页，上一页的页码： page.previous_page_number
+是否有下一页： page.has_next
+如果有下一页，下一页的页码：page.next_page_number
+
+总页数： page.paginator.page_number
+当前页数： page.number
+
+3. 登录注册
+
+Django自带登录注册：
+	auth.authenticate()
+	auth.login()
+	auth.logout()
+	login_required()
+
+自己实现登录注册:
+	登录步骤：
+		第一步：登录的时候，向cookie中设置某个随机的字符串
+		第二步：登录的时候，也向服务端保存这个随机的字符串
+	验证：
+		第一步：先获取cookie中的随机字符串
+		第二步：在服务端进行校验，判断cookie中的随机字符串是否在服务端保存，并拿到相关的用户信息
+		第三步: 判断，如果拿不到用户的信息，则让用户跳转到登录
+
+	校验方法：
+		a) 使用中间件
+			def process_request
+			def process_view
+			def process_template_request
+			def process_response
+		b）使用装饰器
+		
