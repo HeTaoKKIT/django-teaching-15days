@@ -1,0 +1,109 @@
+
+昨日回顾：
+
+1. 日志
+loggers: 用于接收日志信息
+
+	import logging
+	logger = logging.getLogger(‘dj’)
+	logger.info(‘asdasd’)
+
+filters: 过滤loggers丢给handlers处理的信息
+
+hadlers： 用于处理日志
+	filename：日志文件
+	class
+	maxBytes：大小
+
+formatters： 格式化
+	%(message)s
+
+
+2. rest_framework
+用于前后分离，前端vue+后端api
+
+安装：
+	pip install djangorestframework==2.4.6
+使用：
+url定义：
+	from rest_framework.router import SimpleRouter
+
+	router = SimpleRouter()
+	router.register('student', views.StudentSource)
+
+	urlpatterns += router.urls
+
+views中定义：
+
+class StudentSource（mixins.ListModelMixin,
+					mixins.RetrieveModelMixin）:
+
+	queryset = Student.objects.all()
+	serializer_class = SerializerStudent
+
+请求获取全部： GET  /app/student/
+请求获取某一个学生信息：GET  /app/student/id/
+
+
+昨日作业：
+1. 装饰器
+
+AOP,面向切面编程
+
+def is_login(func):
+
+	def check_user(request):
+		sessin_id = request.COOKIES.get('session_id')
+		if not session_id:
+			return HttpResponseRedirect(/backweb/login/)
+		user = User.objects.filter(session_id=session_id)
+		if not user:
+			return HttpResponseRedirect(/backweb/login/)
+		request.user = user[0]
+		return func()
+
+	return check_user
+
+
+@is_login
+def my_login():
+	pass
+
+@is_login
+def index():
+	pass
+
+
+今日笔记：
+
+rest返回结果： 状态码，数据，信息
+原生返回结果：
+  [
+    {
+        "id": 2,
+        "s_name": "李四",
+        "s_age": 10
+    },
+    {
+        "id": 3,
+        "s_name": " 张三",
+        "s_age": 12
+    }
+   ]
+
+修改后：
+	[
+		data:[{
+		        "id": 2,
+		        "s_name": "李四",
+		        "s_age": 10
+		    },
+		    {
+		        "id": 3,
+		        "s_name": " 张三",
+		        "s_age": 12
+		    }]
+		code: 200,
+		msg: '请求成功'
+
+	]

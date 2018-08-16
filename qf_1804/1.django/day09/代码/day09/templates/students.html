@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>学生列表页面</title>
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+    <script type="text/javascript">
+        function all_student(){
+            $.get('/app/student/', function(data){
+                s = '<table><tr><td>编号</td><td>姓名</td><td>操作</td></tr>'
+                for(var i=0; i< data.length; i++){
+                    s += '<tr><td>' + data[i].id + '</td><td>' + data[i].s_name
+                    s += '</td><td>'
+                    s += '<a onclick="del_student(' + data[i].id  + ');">删除</a>'
+                    s += '<a onclick="edit_student(' + data[i].id  + ');">编辑</a>'
+                    s += '</td></tr>'
+                }
+                s += '</table>'
+                $('#stu_div').html(s)
+            });
+        }
+
+        function del_student(id){
+            $.ajax({
+                url: '/app/student/' + id + '/',
+                type: 'DELETE',
+                dataType: 'json',
+                success: function(data){
+                    alert('删除成功')
+                },
+                error: function(data){
+                    alert('删除失败')
+                }
+            })
+        }
+
+        function add_student(){
+            location.href='/app/add_students/'
+        }
+    </script>
+</head>
+<body>
+<input type="button" value="获取学生信息" onclick="all_student();">
+
+<input type="button" value="添加" onclick="add_student();">
+<div id="stu_div">
+
+
+</div>
+
+</body>
+</html>

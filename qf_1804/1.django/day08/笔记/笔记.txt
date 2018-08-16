@@ -1,0 +1,98 @@
+
+昨日回顾：
+
+1. 权限与角色
+
+权限表、角色表、用户表
+
+权限和角色表====> ManyToManyField
+用户和角色====> ForeignKey
+
+2. 添加用户
+
+User.objects.create()
+
+3. 添加角色和权限
+
+role = Role.objects.get(xxx)
+per = Permission.objects.get(xxxx)
+
+添加：
+	role.r_p.add(per)
+删除：
+	role.r_p.remove(per)
+
+4. 添加用户和角色的关系
+
+user = User.objects.get(xxx)
+user.u_r = role
+user.save()
+
+5. 中间件
+request.user默认为：AnymouseUser
+
+记录当前登录系统的用户： 
+	request.user = user
+
+在任何页面中任何位置都可以使用{{ user }}去解析当前登录系统的user信息
+
+6. 权限
+
+中间件：
+
+all_permissions = [p.p_name for p in user.u_r.r_p.all() ]
+
+user.role_permission = all_permissions
+request.user = user
+
+页面中：
+
+	{% if 'LISTARTICEL' in user.role_permission %}
+
+
+今日笔记：
+
+1. 日志4个组件：
+
+loggers：接收日志的入口
+handlers：处理日志，并按照指定的格式去保存
+filters：过滤，过滤loggers丢给handlers的日志信息。
+formatters：指定格式
+
+日志级别：DEBUG<INFO<WARNING<ERROR<CRITICAL
+
+2. 前后分离，MVT中T不包含在项目中
+
+ VUE + restframework
+
+a) 修改学生信息
+url定义：
+   post /app/student/?stu_id=1
+
+   /app/student/1/?name=张三
+
+状态转移：
+
+	GET： 查询
+	POST： 创建
+	PUT: 用于修改（全部变量进行修改）
+	PATCH: 用于修改（部分变量进行修改）
+	DELETE: 删除
+
+请求方式POST，请求url：/app/student/
+请求方式DELETE， 请求url：/app/student/1/
+请求方式PATCH， 请求url：/app/student/1/
+请求方式PUT， 请求url：/app/student/1/
+
+GIL:
+	多线程在计算密集型，比单线程慢
+	多线程在IO密集型，比单线程快
+使用协程：
+	只有一个线程
+
+
+作业：
+1. 重构rest中删除的方法，实现软删除
+2. 重构rest中的更新方法
+3. 在执行hello方法的时候，打印日志，使用装饰器
+4. 个人博客网站
