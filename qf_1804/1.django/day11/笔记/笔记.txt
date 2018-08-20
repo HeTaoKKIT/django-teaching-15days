@@ -1,0 +1,35 @@
+
+1. 项目周，第一天day01
+
+项目：
+
+a) virtualenv --no-site-packages -p xxxx axfenv4
+
+b) pip install Django==1.11
+
+一般有记录安装包文件，requeirement.txt
+pip install -r requeirement.txt
+
+c) django-admin startproject axf4
+
+d) python manage.py startapp
+
+配置 settings.py:
+
+a）INSTALLED_APPS注册创建的app
+
+b）DATABASE==> host,port,user,password, name, engine
+
+c) TEMPALETS
+	os.path.join(BASE_DIR, 'templates')
+
+d) STATICFILES_DIRS = [
+	os.path.join(BASE_DIR, 'static')
+]
+
+
+作业：
+
+1. 登录注册
+2. 中间件
+3. 个人中心页面，首页页面，注册登录页面
