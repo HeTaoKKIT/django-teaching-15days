@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>添加学生信息</title>
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+    <script type="text/javascript">
+        function add_student(){
+            var s_name = $('#s_name').val()
+            var s_age = $('#s_age').val()
+            var s_sex = $('#s_sex').val()
+            var csrf = $('input[name="csrfmiddlewaretoken"]').val()
+            $.ajax({
+                url: '/app/student/',
+                type: 'POST',
+                dataType:'json',
+                data:{'s_name': s_name, 's_age': s_age, 's_sex': s_sex},
+                headers:{'X-CSRFToken': csrf},
+                success:function(data){
+                    alert('请求成功')
+                },
+                error:function(data){
+                    alert('请求失败')
+                }
+            });
+        }
+    </script>
+</head>
+<body>
+{% csrf_token %}
+姓名：<input type="text" name="s_name" id="s_name"><br>
+年龄：<input type="text" name="s_age" id="s_age"><br>
+性别：
+<select name="s_sex" id="s_sex">
+    <option value="1">男</option>
+    <option value="0">女</option>
+</select>
+<br>
+<input type="button" value="提交" onclick="add_student();">
+
+</body>
+</html>

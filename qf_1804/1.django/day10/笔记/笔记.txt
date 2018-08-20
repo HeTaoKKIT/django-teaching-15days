@@ -1,0 +1,36 @@
+
+昨日回顾：
+
+1. restful
+
+核心：资源、状态转移、接口统一
+
+GET  /app/students/
+GET/PUT/PATCH/DELETE /app/students/[id]/
+POST /app/students/
+
+2. ajax
+
+$.get(url, function(data){
+	
+})
+
+$.post(url, {'key': value}, function(data){
+	
+})
+
+{% csrf_token %}
+var csrf = $('input[name="csrfmiddlewaretoken"]').val()
+$.ajax({
+	url：'',
+	data:{'key':value},
+	dataType:'json',
+	headers:{'X-CSRFToken': csrf}
+	type:'POST/PUT/PATCH/DELETE/GET',
+	success:function(data){
+
+	},
+	error:function(data){
+
+	}
+})
