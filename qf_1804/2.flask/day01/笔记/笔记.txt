@@ -1,0 +1,35 @@
+
+
+Django回顾：
+
+1. 虚拟环境 virtualenv
+2. 创建项目/应用
+3. MVT ==> model，views，templates
+
+models: OneToOneFiled, ForeignKey, ManyToManyField
+views: render, redirect, request, cookies、session
+templates: if/for/forloop/过滤器
+
+4. 部署
+服务器：CentOS7、Ubuntu
+技术：nohup、screen，nginx+uwsgi
+
+flask回顾：
+
+第一天：
+
+1. 虚拟环境 virtualenv
+2. 创建项目
+3. from flask_script import Manager ,管理app
+4. from flask import Blueprint, 管理路由
+5. url_for('实例化蓝图中第一个参数.跳转到方法的函数名')
+6. route规则，string，int， float， path， uuid
+7. 请求与响应，args和form。get方法，getlist方法
+8. 异常捕获，abort(500)，errorhandler(500)
+9. cookie，set_cookie, delete_cookie
+
+作业：
+1. 定义函数设置cookie，
+2. 访问某个函数，验证cookie中的值，如果没有，则不让访问该函数，直接跳转到另外一个函数
+3. 使用装饰器
+
