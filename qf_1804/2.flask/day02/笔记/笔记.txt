@@ -1,0 +1,102 @@
+
+昨日回顾：
+
+1. virtualenv虚拟环境
+2. flask ‘微’型web框架
+
+from flask import Flask
+
+app = Flask(__name__)
+
+@app.route('/')
+def hello():
+	return 'hello world'
+
+if __name__ == '__main__':
+	app.run()
+
+a) 运行默认IP：端口 ===> 127.0.0.1:5000
+b) app.run(host=127.0.0.1, port=8080, debug=True)
+
+3. 管理启动的app
+安装：pip install flask-script
+
+使用：
+	from flask_script import Manager
+
+	manage = Manager(app=app)
+
+启动：
+	manage.run()
+启动命令：
+	python manage.py runserver -d -p 8080 -h 127.0.0.1
+
+4. 管理路由
+
+安装： pip install flask-blueprint
+
+使用：
+	from flask import Blueprint
+
+	第一步，初始化：
+	blue = Blueprint('app', __name__)
+
+	@blue.route('hello/')
+	def hello():
+		return	'123'
+
+	第二步, 注册：
+	app.register_blueprint(blueprint=blue, url_prefix='/app')
+
+访问hello()方法，url为： 127.0.0.1:8080/app/hello/
+
+
+5. 反向解析
+
+	url_for('蓝图的第一个参数.跳转到某个函数的函数名')
+
+6. route规则
+<string:name> 等同于 <name>
+<int:id>
+<float:id>
+<path:path>
+<uuid:uuid>
+
+7. 请求与响应
+
+request请求： 
+	a) GET请求：获取参数，request.args获取
+	b）POST、PUT、PATCH、DELETE请求： 获取参数，request.form获取
+	c）获取重复的key对应的值： getlist(key)
+
+response响应：
+	a) make_response() 创建response对象
+	b) 绑定cookie
+		set_cookie(key, value, max_age/expires)
+		delete_cookie(key)
+
+8. 异常抛出与捕获
+
+from flask import abort
+
+抛出：abort(500)
+捕获：blue.errorhandler(500)
+
+
+今日回顾：
+1. session使用
+	a) 和dict操作一样，pop，clear，get
+	b）session访问redis
+	
+2. 模板
+	a） block、endblock
+	b）super()
+	c) for、if elif else
+	d）macro
+	e）过滤器，safe，trim，length，lower，upper
+
+3. static
+	
+	<link rel='stylesheel' href='/static/css/css.css'>
+
+	<link rel='stylesheel' href='{{ url_for("static", filename="css/css.css") }}'>

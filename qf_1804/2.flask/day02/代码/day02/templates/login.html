@@ -1,0 +1,75 @@
+
+{% extends 'base_main.html' %}
+
+{% block title %}
+    登录页面
+{% endblock %}
+
+{% block extCSS %}
+    <!--<link rel="stylesheet" href="/static/css/login.css">-->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/login.css') }}">
+{% endblock %}
+
+{% block extJS %}
+    {{ super() }}
+{% endblock %}
+
+{% block content %}
+
+    <br>
+    {{ content_h2 }}
+    {{ content_h2|safe }}
+
+    {{ content_h2|length }}
+<br>
+    原始字符串:{{ content_h3 }}
+<br>
+    去掉空格后字符串：{{ content_h3|trim }}
+<br>
+    原始字符串长度:{{ content_h3|length }}
+<br>
+    去掉空格后字符串长度：{{ content_h3|trim|length }}
+<br>
+
+    {% from 'functions.html' import hello %}
+    {% from 'functions.html' import show_goods %}
+
+    {{ hello('小明') }}
+
+    {{ show_goods(1, '草莓', 10, 1000) }} <br>
+    {{ show_goods(2, '葡萄', 10, 1000) }} <br>
+    {{ show_goods(3, '柠檬', 10, 1000) }} <br>
+<br>
+
+    {% for good in goods %}
+        {{ show_goods(good.0, good.1, good.2, good.3) }} <br>
+    {% endfor %}
+
+    {% for good in goods %}
+        商品id：{{ good.0 }}
+        商品名称：{{ good.1 }}
+        商品价格：{{ good.2 }}
+        商品库存：{{ good.3 }}
+        <br>
+    {% endfor %}
+
+<br>
+    {% for i in scores %}
+        {{ loop.index }}
+        {{ loop.index0 }}
+        {{ loop.revindex }}
+        {{ loop.revindex0 }}
+
+        {% if loop.first %}
+            <p style="color:red;"> {{ i }} </p>
+        {% elif loop.last %}
+            <p style="color:yellow;"> {{ i }} </p>
+        {% else %}
+            {{ i }}
+        {% endif %}
+         <br>
+    {% endfor %}
+
+
+
+{% endblock %}

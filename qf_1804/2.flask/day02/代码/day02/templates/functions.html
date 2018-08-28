@@ -1,0 +1,11 @@
+
+{% macro hello(name) %}
+    <p style="color:red;">{{ name }}</p>
+{% endmacro %}
+
+{% macro show_goods(id, name, price, kucun) %}
+    商品id：{{ id }}
+    商品名称：{{ name }}
+    商品价格：{{ price }}
+    商品库存：{{ kucun }}
+{% endmacro %}

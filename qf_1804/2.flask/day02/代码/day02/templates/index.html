@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <p>购物车实现：没有登录的情况</p>
+    <p>没有登录：添加到购物车中的数据，是放在redis中，
+        清除cookie，购物车中数据不在存在</p>
+    <p>登录：同步redis中的数据到mysql的购物车表中</p>
+    <p>购物车中商品展示：{{ goods_name }}</p>
+    <form action="" method="post">
+        <select name="goods_id">
+            <option value="1">MAC PRO</option>
+            <option value="2">MAC</option>
+            <option value="3">包包</option>
+        </select>
+        <input type="submit" value="提交">
+    </form>
+</body>
+</html>
