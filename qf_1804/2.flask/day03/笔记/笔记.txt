@@ -1,0 +1,77 @@
+
+昨日回顾：
+
+1. cookie和session
+
+原因:http是个无状态协议
+	a）无法标记当前用户登录状态
+	b）无法标记访问网站的用户是否为同一个人
+
+解决办法：使用cookie和session
+	a）在cookie中存入某个随机的标识符
+	b）在服务端也存入相应的标识符
+
+解决过程：
+	a）从客户端发送request请求，并带cookie传入到后端
+	b）服务端中，会拿到request中的cookie中的标识符，然后在后端进行匹配查找，如果查找到相应的标识符，则获取在服务端中存入的数据
+
+使用session存储数据：
+	redis、memachaed、filesystem、sqlalchemy等等
+
+配置redis：
+	a）SESSION_TYPE ===> redis
+	b）SESSION_REDIS ===> redis.Redis(host, port)
+	c) 第一种方式：
+		Session(app=app)
+	   第二种方式:
+	    sess = Session()
+	    sess.init_app(app)
+
+使用session：
+
+	a）存数据 session['key'] = value
+	b）删数据 session.pop('key')
+	c) 清空所有数据 session.clear()
+
+2. jinja2 模板
+
+	模板渲染:
+		a）挖坑填坑 {% block title %} {% endblock %}
+		b) 坑之前填充好的数据直接拿过来 {{ super() }}
+		c) 继承 {% extends 'xxx.html' %}
+		d) 包含 {% include 'xx.html' %}
+
+	数据加载：
+		a）解析标签 {% for %} ，for、if、没有ifequal
+		b）解析参数  {{ var }}
+		c）macro 宏定义
+			c1）可以定义函数。
+			c2) 调用 {% from 'xxx.html' import hello %}
+
+	数据过滤：
+		a）解析带样式的content_h2的字符串，使用safe过滤器 {{ content_h2|safe }}
+		b) trim：去掉空格
+		c）length：长度
+		d）lower：小写
+		e）upper：大写
+
+	static加载：
+		a）第一种加载css方式
+		<link rel='stylesheel' href='/static/css/xxx.css'>
+		b）第二种
+		<link rel='stylesheel' href='{{ url_for("static", filename="css/xxx.css") }}'>
+
+
+今日回顾：
+
+	1. 模型CRUD
+		a) 模型定义，需要SQLAlchemy
+			db.Integer,db.String(10), primary_key, autoincreament
+			default, unique
+		b) 配置：SQLCLCHEMY_DATABASE_URI
+		c）db.create_all(), db.drop_all()
+		e)  db.session.add()
+			db.session.add_all()
+			db.session.delete()
+			db.session.commit()
+		f) contains,like,__gt__,and_,not_,or_
