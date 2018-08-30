@@ -1,0 +1,65 @@
+
+昨日回顾：
+
+模型：
+
+1. 定义模型，配置模型，创建表：
+	a) 安装 flask-sqlalchemy
+	b) models.py文件中， 拿到sqlalchemy对象db
+		class XXX(db.Model):
+			id = db.Column(db.Integer, primary_key=True, autoincrement = True)
+			name = db.Column(db.String(10), unique=True, default='')
+
+			__tablename__ = 'xxx'
+	c) 设置访问数据库
+		app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:123456@127.0.0.1:3306/flask4'
+	d) from xxx.model import db
+
+	   db.init_app(app)
+	e)  创建表
+		db.create_all()
+		删除表
+		db.drop_all()
+
+2. 查询
+	a) 执行sql
+		sql=‘select * from xxx;’
+		result = db.session.execute(sql)
+	b) all()
+		XXX.query.all()  ====>> list结果集
+	c) filter()
+		XXX.query.filter(模型名.字段=='')  ====>> BaseQuery结果集
+	d) filter_by()
+		XXX.query.filter_by(字段='')   ====>> BaseQuery结果集
+	e) get()
+		XXX.query.get(id)   ====>> XXX的object
+
+3. 增/改
+	a)  db.session.add(对象)
+
+		xxx = XXX()
+		xxx.name = ''
+		db.session.add(xxx)
+		db.session.commit()
+
+	b) 批量增 db.session.add_all([对象1，对象2，对象3.....])
+
+4. 删 db.session.delete(对象)
+
+	
+5. 运算符
+
+contains：包含
+like：模糊
+in_：属于某个范围之内的数据
+__gt__:大于
+__ge__：大于等于
+startswith:以什么开始
+endswith:以什么结束
+offset()：跳过几个
+limit()：截取几个
+and_：并
+not_：非
+or_：或者
+order_by('id')：排序
+

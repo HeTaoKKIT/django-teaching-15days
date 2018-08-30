@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<table>
+    <thead>
+        <th>ID</th>
+        <th>姓名</th>
+        <th>年龄</th>
+        <th>操作</th>
+    </thead>
+    <tbody>
+        {% for stu in stus %}
+            <tr>
+                <td>{{ stu.id }}</td>
+                <td>{{ stu.s_name }}</td>
+                <td>{{ stu.s_age }}</td>
+                <td>
+                    <a href="/app/del_stu/{{ stu.id }}/">删除</a>
+                    |
+                    <a href="/app/edit_stu/{{ stu.id }}/">编辑</a>
+                </td>
+            </tr>
+        {% endfor %}
+        <tr>
+            <td>
+                当前页：{{ paginate.page }}
+                当前总页数：{{ paginate.pages }}
+            </td>
+            <td>
+                总条数：{{ paginate.total }}
+            </td>
+            <td>
+                {% for i in paginate.iter_pages() %}
+                    <!--<a href="/app/paginate/?page={{ i }}">{{ i }}</a>-->
+                    <a href="{{ url_for('app.stu_paginate') }}?page={{ i }}">{{ i }}</a>
+                {% endfor %}
+            </td>
+        </tr>
+        <tr>
+            <td>
+                {% if paginate.has_prev %}
+                    <a href="{{ url_for('app.stu_paginate') }}?page={{ paginate.prev_num }}">上一页</a>
+                {% endif %}
+                |
+                {% if paginate.has_next %}
+                    <a href="{{ url_for('app.stu_paginate') }}?page={{ paginate.next_num }}">下一页</a>
+                {% endif %}
+            </td>
+        </tr>
+    </tbody>
+
+</table>
+
+
+</body>
+</html>
