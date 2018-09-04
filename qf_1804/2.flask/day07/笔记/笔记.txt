@@ -1,0 +1,37 @@
+
+爱家项目功能
+
+
+用户模块：
+	1. 登录注册
+		a) 注册, 手机号、密码、确认密码、图片验证码
+			a1）图片验证码，使用session + redis
+			a2) 加密解密
+				generate_password_hash
+				check_password_hash
+		b）登录，手机号、密码
+			b1）登录成功向session中存user_id
+ 
+	2. 个人中心信息展示
+		a) 获取用户的姓名、头像、电话号
+			<img src="/static/media/{{ avatar }}">
+
+	3.修改头像
+		a) 上传选择的头像，使用ajaxSubmit
+			阻止默认事件： e.preventDetault()
+
+			$(this).ajaxSubmit(){
+				url:'',
+				dataType:'json',
+				type:'POST/PATCH/PUT/DELETE/GET',
+				success:function(data){},
+				error:function(data){}
+			}
+	4.修改用户名
+
+	5. 装饰器
+		a）用户登录状态的校验
+			验证session中是否存在user_id
+
+房屋模块：
+
