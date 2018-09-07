@@ -1,0 +1,62 @@
+
+配置：
+
+安全组：
+
+	1. 安全组中端口是否开放
+
+Nginx：
+
+	1. nginx的配置conf文件位置：/etc/nginx/nginx.conf
+	2. nginx的启动、暂停、重启、查看：
+		systemctl start nginx
+		systemctl stop nginx
+		systemctl restart nginx
+		systemctl status nginx
+	3. 查看启动nginx的效果，直接访问公网IP，可以看到‘Welcome to nginx on Fedora!’这个提示。
+
+项目文件：
+
+	1. mkdir conf src logs env
+	2. 在conf中创建nginx启动文件和uwsgi启动文件
+		ajnginx.conf内容如下：
+			server {
+			    listen    80;
+			    server_name 47.106.180.185 localhost;
+
+			    access_log /home/logs/ajaccess.log;
+			    error_log /home/logs/error.log;
+
+			    location / {
+				include uwsgi_params;
+			        uwsgi_pass 127.0.0.1:8891;
+
+				uwsgi_param UWSGI_CHDIR /home/src/aj;
+				uwsgi_param UWSGI_SCRIPT manage:app;
+			    }    
+			}
+		ajuwsgi.ini内容如下：
+			[uwsgi]
+			master = true
+			socket = 127.0.0.1:8891
+			chdir = /home/src/aj
+			pythonpath = /home/env/ajenv/bin/python3
+			callable = app
+			logto = /home/logs/ajuwsgi.log
+
+uwsgi配置：
+	
+	1. 创建虚拟环境
+	2. 安装项目所需要的包：/home/env/ajenv/bin/pip3 install -r requirement.txt
+	3. 安装uwsgi： /home/env/ajenv/bin/pip3 install uwsgi
+
+redis安装：
+
+	1. yum install redis
+	2. 启动redis：redis-server
+	3. 查看redis客户端：redis-cli
+
+配置启动nginx和uwsgi
+	1. 在/etc/nginx/nginx.conf中加入conf文件中定义的ajnginx.conf文件
+	2. 重启nginx。 systemctl restart nginx
+	3. /home/env/ajenv/bin/uwsgi --ini ajuwsgi.ini
