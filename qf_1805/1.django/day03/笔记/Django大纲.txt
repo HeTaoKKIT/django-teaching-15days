@@ -1,0 +1,99 @@
+Django
+	虚拟环境virtualenv
+		安装：pip install virtualenv
+		参数：virtualenv
+			-p： 指定安装在虚拟环境中的python版本，如果不指定则虚拟环境中安装的python版本为环境变量中设置的python版本
+			--no-site-packages：指定虚拟环境中没有安装任何的包
+		使用python3自带的安装虚拟环境
+			创建：python -m venv name
+		激活虚拟环境
+			win：直接执行activate.bat
+			mac/linux：source  activate
+		退出虚拟环境
+			win：直接执行deactivate.bat
+			mac/linux：deactivate
+	安装Django
+		安装：pip install django==1.11
+		查询django有哪些版本：pip install django==1.11.11111111
+	创建项目
+		创建工程目录：django-admin startproject day01
+			工程目录结构
+				__init__.py
+					配置数据库的驱动：pymysql.install_as_mysqldb()
+				urls.py
+					根路由地址，管理URL匹配规则
+				settings.py
+					DEBUG模式：DEBUG=True
+					数据库DATABASES：ENGINE：修改为mysql，USER：用户名，PASSWORD：密码，NAME：数据库名，HOST:ip地址，PORT：端口
+					INSTALLED_APPS:写创建的应用app
+					设置时区：Asia/Shanghai
+					设置中文：zh-hans
+		创建应用app：python manage.py startapp app_name
+			应用目录结构
+				__init__.py
+				models.py
+					定义模型：字段：IntegerFiled，CharFiled。参数：default，max_length
+					定义模型映射到数据库中的表名: db_table='student'
+						如果不指定db_table参数，则在迁移后，数据库中的表名为appname_模型名(小写)
+				views.py
+					写业务逻辑
+				admin.py
+					注册模型: adinn.site.register(模型)
+				tests.py
+					测试接口文件
+	数据迁移
+		生成迁移文件:python manage.py makemigrations
+			如果models.py中模型没有任何改动，是提示'no change xxx'
+			如果modes.py中模型改动了，但是还是提示'no change xxx'，则修改迁移命令：python manage.py makemigrations app_name
+		执行迁移:python manage.py migrate
+	管理后台
+		创建超级用户
+			命令：python manage.py createsuperuser
+		管理在admin.py中注册的模型
+			对模型的CRUD操作
+		模型数据展示
+			展示字段：list_display
+			过滤：list_filter
+			搜索：search_field
+			分页：list_per_page
+	MVT
+		M(model)
+			Interger
+			Charfiled，max_length
+			Booleanfiled
+			DateTimeField
+				auto_now_add=True，在创建的时候，设置默认的初始时间
+				auto_now=True,每次修改save过后。重新设置为修改的时间
+			参数
+				null=True,表示该字段可以为空
+				default，设置默认值
+				max_length，设置最大长度
+				min_length，最小值
+				unique，唯一
+				verbose_name，注解名称
+		V(views)
+			CRUD
+				增
+					模型.objects.create()
+					模型对象.save()
+					初始化__init__，然后模型对象.save()
+				删
+					模型.objects.filter().first().delete()
+				改
+					模型对象.save()
+				查
+					all()，结果为QuerySet
+					filter(条件1, 条件2, 条件3....),查询满足条件1,2,3...的数据，结果为QuerySet
+					exclude(条件1,条件2，条件3....)，查询不满足条件1,2,3...的数据，结果为QuerySet
+					get(条件1)，查询满足条件的数据，如果数据库中查询不到满足条件的数据，会报错误。如果数据库中查询得到的结果超过一条数据，也会报错。结果为模型对象Object
+				运算符
+					语法：模型字段__符号=
+					模糊查询：icontains，startswith， endswith
+					排序：order_by，升序order_by('id'), 降序order_by('-id')
+					解析结果：values()
+					在范围之内：in
+					是否为空：isnull，isnotnull
+					id等同于pk
+					大于，大于等于：gt，gte
+					小于，小于等于 ：lt，lte
+					或条件'|'，且条件'&'，非条件'~'：Q（）

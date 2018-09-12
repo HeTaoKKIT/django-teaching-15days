@@ -1,0 +1,29 @@
+
+模型关联关系：
+
+class A:
+
+class B:
+
+class D:
+
+class C:
+	a = OneToOneField(A)
+	b = ForeignKey(B)
+	d = ManyToManyFiled(D)
+
+1. 有c对象，分别去查A，B,D的信息
+
+c = C()
+查询a对象信息：c.a
+查询b对象信息：c.b.all()
+查询d对象信息：c.d.filter().all()
+
+2. 反向查询。已知a，b，d对象查询c对象信息
+通过a查询c对象信息：a.c
+通过b查询c对象信息：b.c_set.filter().all()
+通过d查询c对象信息：d.c_set.all()
+
+3.中间表加数据
+c.d.add(d_id)
+c.d.remove(d_id)
