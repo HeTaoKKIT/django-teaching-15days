@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    {% load static %}
+    <!--<link rel="stylesheet" href="/static/css/index.css">-->
+    <link rel="stylesheet" href="{% static 'css/index.css' %}">
+    <script src="{% static 'js/xxx.js' %}"></script>
+</head>
+<body>
+<h2>你好</h2>
+
+<table>
+    <thead>
+        <th>序号</th>
+        <th>id</th>
+        <th>name</th>
+        <th>age</th>
+    </thead>
+    <tbody>
+        {% for stu in students %}
+        <tr>
+            <td>{{ forloop.counter }}</td>
+            <td>{{ stu.id }}</td>
+            <!--<td {% if stu.id == 2 %} style="color:red;" {% endif %}>-->
+                <!--{{ stu.s_name }}-->
+            <!--</td>-->
+            {% comment %}
+            <td {% if stu.id == 2 %} style="color:red;" {% endif %}>
+                {{ stu.s_name }}
+            </td>
+            {% endcomment %}
+            <td {% if forloop.first %} style="color:red;" {% endif %}>
+                {{ stu.s_name }}
+            </td>
+            <td {% ifequal stu.id 12 %} style="color:yellow;" {% endifequal %}>
+                {{ stu.s_age }}
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+</body>
+</html>
