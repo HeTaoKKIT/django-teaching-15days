@@ -1,0 +1,25 @@
+
+作业：
+1. UserTicket模型中：添加过期时间
+	实现：在中间件中判断，如果ticket过期，则删除user_ticket中的值
+2. 实现注销功能
+	实现：删除cookie中的ticket，删除UserTicket中的信息
+
+3. 梳理登录注册的功能，采用cookie和session实现登录注册注销
+
+
+复习今日：
+
+1. 自定义登录
+	a）设置cookie
+	set_cookie(key, value, max_age, expires)
+	delete_cookie(key)
+	b) 设置服务端中存储的value值
+
+2. 校验
+	a）在视图函数中判断ticket是否为空，是否能在服务端中找到对应的user对象
+	b）使用闭包--->装饰器
+		外部内函数中内嵌函数，内嵌函数调用外部函数的参数，外部函数返回内部函数
+	c）中间件，重构process_request()方法，实现的功能和定义闭包的功能一样
+		302重定向
+		全局user，request.user默认为AnnoyMousUser

@@ -77,3 +77,4 @@
   - [第一周第二天](qf_1805/1.django/day02/笔记/笔记.txt)
   - [第一周第三天](qf_1805/1.django/day03/笔记/Django大纲.txt)
   - [第一周第五天](qf_1805/1.django/day05/笔记/笔记.txt)
+  - [第二周第一天](qf_1805/1.django/day06/笔记/笔记.txt)
