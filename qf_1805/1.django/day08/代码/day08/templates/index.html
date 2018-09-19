@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+{{ user }}
+
+{{ perms.users }}
+{% if perms.users.add_myuser %}
+    <p>添加用户</p>
+{% endif %}
+{% if perms.users.delete_myuser %}
+    <p>删除用户</p>
+{% endif %}
+<p>修改用户</p>
+<p>修改用户名</p>
+<p>修改用户密码</p>
+
+</body>
+</html>
