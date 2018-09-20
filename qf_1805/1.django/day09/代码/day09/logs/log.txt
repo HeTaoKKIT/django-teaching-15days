@@ -1,0 +1,26 @@
+30 django.request 2018-09-20 10:39:18,679 Not Found: /favicon.ico
+20 users.views 2018-09-20 10:41:27,339
+20 users.views 2018-09-20 10:58:42,819
+20 utils.middlwrare 2018-09-20 10:58:42,823
+40 django.request 2018-09-20 10:58:42,823
+Traceback (most recent call last):
+  File "E:\env\djenv5\lib\site-packages\django\core\handlers\exception.py", line 41, in inner
+    response = get_response(request)
+  File "E:\env\djenv5\lib\site-packages\django\utils\deprecation.py", line 142, in __call__
+    response = self.process_response(request, response)
+  File "E:\env\djenv5\lib\site-packages\django\middleware\clickjacking.py", line 32, in process_response
+    if response.get('X-Frame-Options') is not None:
+AttributeError: 'NoneType' object has no attribute 'get'
+20 users.views 2018-09-20 10:59:29,471
+20 utils.middlwrare 2018-09-20 11:01:03,537
+40 django.request 2018-09-20 11:01:21,291
+Traceback (most recent call last):
+  File "E:\env\djenv5\lib\site-packages\django\core\handlers\exception.py", line 41, in inner
+    response = get_response(request)
+  File "E:\env\djenv5\lib\site-packages\django\utils\deprecation.py", line 142, in __call__
+    response = self.process_response(request, response)
+  File "E:\env\djenv5\lib\site-packages\django\middleware\clickjacking.py", line 32, in process_response
+    if response.get('X-Frame-Options') is not None:
+AttributeError: 'NoneType' object has no attribute 'get'
+20 users.views 2018-09-20 11:02:32,908
+20 utils.middlwrare 2018-09-20 11:02:32,917
