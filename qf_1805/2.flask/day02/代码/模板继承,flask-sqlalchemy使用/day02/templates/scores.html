@@ -1,0 +1,26 @@
+
+{% extends 'base_main.html' %}
+
+{% block content %}
+    <!--宏定义: 无参情况-->
+    {% from 'funtions.html' import hello, say %}
+    {{ hello() }}
+    <!--宏定义: 有参情况-->
+    {{ say('小李') }}
+
+    <br>
+
+    {{ content_h2 | safe }}
+    {{ content_h2 | safe | length }}
+    {{ content_h2 | striptags | capitalize | title | lower | upper }}
+    <br>
+    {{ stu_scores }}
+    {% for scores in stu_scores  %}
+        <!--Jinja2中没有ifequal-->
+        <p {% if loop.first %} style="color:red;" {% endif %}>
+            序号:{{ loop.index }}
+            成绩:{{ scores }}
+            循环: {{ loop.first }}
+        </p>
+    {% endfor %}
+{% endblock %}

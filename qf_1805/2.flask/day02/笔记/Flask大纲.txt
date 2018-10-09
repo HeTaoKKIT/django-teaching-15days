@@ -1,0 +1,29 @@
+Flask
+	环境搭建
+		virtualenv -p xxxx --no-site-packages flaskenv
+		安装Flask： pip install Flask
+	最小应用
+		启动:默认: 127.0.0.1:5000
+		app.run(host, port, debug=True)
+	启动管理Flask-Script
+		安装: pip install flask-script
+		管理Flask app
+		启动默认: 127.0.0.1:5000
+		修改启动命令: python manage.py runserver -p 8080 -h 127.0.0.1 -d
+	蓝图 Flask-Blueprint
+		安装: pip install flask-blueprint
+		第一步，获取蓝图对象
+		第二步: 注册绑定
+		反向解析: redirect(url_for(''蓝图的第一个参数.跳转的函数名'))
+	route匹配规则
+		@app.route('/index/<int:id>/'), 函数接收的id参数为整型
+		@app.route('/index/<id>/'), 函数接收的id参数为字符串类型
+		@app.route('/index/<string:id>/'), 函数接收到的id参数为字符串类型
+		@app.route('/index/<float:id>/'), 函数接收到的id参数为浮点数类型
+		@app.route('/index/<path:path>/'),函数接收到的id参数为路径
+	异常,捕捉
+		抛出异常
+		捕捉
+	会话上下文Session
+		第一种: flask默认的将会话session存储在cookie中
+		第二种: 指定数据库存取会话session数据
