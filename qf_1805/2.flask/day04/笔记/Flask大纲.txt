@@ -1,0 +1,95 @@
+Flask
+	环境搭建
+		virtualenv -p xxxx --no-site-packages flaskenv
+		安装Flask： pip install Flask
+	最小应用
+		启动:默认: 127.0.0.1:5000
+		app.run(host, port, debug=True)
+	启动管理Flask-Script
+		安装: pip install flask-script
+		管理Flask app
+		启动默认: 127.0.0.1:5000
+		修改启动命令: python manage.py runserver -p 8080 -h 127.0.0.1 -d
+	蓝图 Flask-Blueprint
+		安装: pip install flask-blueprint
+		第一步，获取蓝图对象
+		第二步: 注册绑定
+		反向解析: redirect(url_for(''蓝图的第一个参数.跳转的函数名'))
+	route匹配规则
+		@app.route('/index/<int:id>/'), 函数接收的id参数为整型
+		@app.route('/index/<id>/'), 函数接收的id参数为字符串类型
+		@app.route('/index/<string:id>/'), 函数接收到的id参数为字符串类型
+		@app.route('/index/<float:id>/'), 函数接收到的id参数为浮点数类型
+		@app.route('/index/<path:path>/'),函数接收到的id参数为路径
+	异常,捕捉
+		抛出异常
+		捕捉
+	会话上下文Session
+		第一种: flask默认的将会话session存储在cookie中
+		 
+			第二种: 将会话session数据存储在redis中
+				安装: pip install flask-session和pip install redis
+				设置参数: SESSION_TYPE, SESSION_REDIS
+	模板
+		父模板
+			负责搭建一个模板的骨架，挖坑{% block %}
+		子模板
+			继承: {% extends %}
+			包含: {% include 'xxx.html' %}
+			获取坑之前填的内容:{{ super() }}
+		模板语法
+			标签: {% 标签 %}
+				if/for/macro
+			变量: {{ 变量 }}
+				for循环的内部变量loop，loop.index, loop.index0
+			过滤器， 使用管道符'|'
+				safe
+				title
+				lower
+				upper
+			引入样式
+				第一种: src='/static/js/xxx.js/', href='/static/css/xxx.css'
+				第二种: src='{{  url_for('static', filename='js/xxx.js') }}'
+	模型
+		安装: pip install flask-sqlalchemy
+		数据库连接地址: SQLALCHEMY_DATABASE_URI: mysql+pymysql://username:password@host:port/flask5
+		在models.py文件中定义模型
+			db=SQLALchemy()
+			db.Column()
+			db.Integer
+			db.String(10)
+		绑定falsk对象并初始化
+			db.init_app(app)
+	CRUD
+		增
+			db.session.add()或db.session.add_all()
+			db.session.commit()
+		删
+			db.session.delete()
+			db.session.commit()
+		改
+			db.session.add() 可以不用写
+			db.session.commit()
+		查
+			查询过滤条件
+				filter(模型.字段=='xxxx')
+				filter_by(字段 = 'xxxx')
+				get()
+					获取不到数据，不会报错
+					获取主键对应的数据
+				all()
+					获取所有的数据, 返回的结果为: [objects1, objects2.....]
+				first()
+					获取第一个对象
+			筛选
+				offset() + limit()
+				order_by()
+				paginate() 分页
+			运算符
+				模糊: contains，like
+				startswith, endswith
+				>,<, __lt__, __gt__, __ge__, __le__
+			逻辑
+				not_
+				and_
+				or_
