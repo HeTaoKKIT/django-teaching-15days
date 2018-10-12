@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <p>我是首页</p>
+    <p>当前用户{{ current_user.username }}</p>
+    <img src="/static/media/{{ current_user.icons }}">
+    <form action="" method="post" enctype="multipart/form-data">
+        头像:<input type="file" name="icons">
+        <input type="submit" value="提交">
+    </form>
+</body>
+</html>

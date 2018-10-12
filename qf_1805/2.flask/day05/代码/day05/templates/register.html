@@ -1,0 +1,15 @@
+
+{% extends 'base.html' %}
+
+{% block content %}
+    <form action="" method="post">
+        {{ form.csrf_token }}
+        {{ form.username.label }}: {{ form.username(class='u_class', style="width:100px;") }}
+        {{ form.password.label }}: {{ form.password }}
+        {{ form.password2.label }}: {{ form.password2 }}
+        {{ form.submit() }}
+    </form>
+    {% if form.errors %}
+        {{ form.errors.password2.0 }}
+    {% endif %}
+{% endblock %}
