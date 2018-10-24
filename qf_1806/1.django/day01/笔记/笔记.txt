@@ -1,0 +1,56 @@
+
+MVC
+	M(模型层)
+	V(视图层)
+	C(业务层)
+
+Django ===> MVT
+    M(模型层)
+    V(视图): 处理业务逻辑
+    T(模板Template): html
+
+# 创建环境
+纯净的虚拟环境: virtualenv --no-site-packages  name
+
+多个python版本，python2.7 python3.6:
+virtualenv --no-site-packages -p D:\xxxx\python3.6.exe name
+
+# python版本3.6 + django 1.11
+
+
+# 创建项目
+django-admin startproject 项目名day01
+	
+	day01工程目录文件夹，__init__.py、settings.py、urls.py、wsgi.py
+	manage.py: 工具集管理入口
+
+# 启动
+    IP: 0.0.0.0  PORT: 80
+	python manage.py runserver IP:PORT
+	python manage.py runserver PORT
+
+# 访问管理后台 admin
+
+	http://127.0.0.1:8080/admin/
+
+# 修改数据库配置settings.py
+
+	ENGINE, USER, PASSWORD, HOST, PORT, NAME
+
+# 映射模型到数据库中
+
+	python manage.py migrate
+
+# 安装数据库驱动
+
+	pip install pymysql
+
+# 初始化数据库的驱动__init__.py
+
+	import pymysql
+	pymysql.install_as_mysqldb()
+
+# 创建超级管理员命令
+
+	python manage.py createsuperuser
+

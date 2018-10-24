@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <table>
+        <thead>
+            <th>姓名</th>
+            <th>年龄</th>
+            <th>操作</th>
+        </thead>
+        <tbody>
+            {% for stu in students %}
+                <tr>
+                    <td>{{ stu.s_name }}</td>
+                    <td>{{ stu.s_age }}</td>
+                    <td>
+                        <a href="/add_info/?stu_id={{ stu.id }}">添加扩展信息</a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>
