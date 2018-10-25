@@ -1,0 +1,49 @@
+1. 模板
+	标签: {% tag %} {% endtag %}
+		for/if/ifequal/extends/block/comment
+	变量: {{ var }}
+
+	父模板base.html: block块, 挖坑
+		{% block xxx %}
+		{% endblock %}
+
+	子模板index.html:
+		{% extends 'base.html' %}
+		{% block xxx %}
+			<p>xxxddd</p>
+		{% endblock %}
+
+	{{ block.super }}: 将block块之前定义的内容拿过来
+
+2. 引入css/js
+
+	<link href='/static/xxx.css' rel='stylesheet'/>
+
+	<link href='{% static 'xxx.css' %}' rel='stylesheet'/
+
+	settings.py中添加:
+
+		STATICFILES_DIRS=[os.path.join(BASE_DIR, 'static')]
+
+3. 标签
+	
+	{% for k in stus %}
+
+	{% endfor %}
+
+	{% if xxx == 1 %}
+
+	{% endif %}
+
+	{% ifequal xxx xxx %}
+
+	{% endifequal %}
+
+4. 过滤器
+
+	safe
+	date
+	lower
+	upper
+	title
+	add

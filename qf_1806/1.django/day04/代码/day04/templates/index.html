@@ -1,0 +1,33 @@
+
+{% extends 'base_main.html' %}
+
+{% block title %}
+    我是首页
+{% endblock %}
+
+{% block css %}
+    <!--加载静态文件css的两种方式-->
+    <!--<link href="/static/css/index.css" rel="stylesheet">-->
+    {% load static %}
+    <link href="{% static 'css/index.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block js %}
+    <!--引入父模板的block js中定义的内容-->
+    <!--第一种: 单行注解-->
+    {# 注解1 #}
+    {# 注解2 #}
+    {# 注解3 #}
+    <!--第二种: 多行注解-->
+    {% comment %}
+        今天好开心
+        <p>发工资了</p>
+    {% endcomment %}
+
+    {{ block.super }}
+{% endblock %}
+
+
+{% block content %}
+    <p>千锋</p>
+{% endblock %}

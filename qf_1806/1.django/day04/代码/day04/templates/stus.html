@@ -1,0 +1,42 @@
+
+{% extends 'base_main.html' %}
+
+{% block content %}
+    <table>
+        <thead>
+            <th>序号</th>
+            <th>id</th>
+            <th>姓名</th>
+            <th>年龄</th>
+            <th>创建时间</th>
+        </thead>
+        <tbody>
+
+            {{ content_h2 | safe }}
+
+            {% for stu in stus %}
+                <tr>
+                    <!--forloop.couter 从1开始打印序号-->
+                    <!--forloop.couter0 从0开始打印序号-->
+                    <!--forloop.revcouter0 倒序打印到0结束-->
+                    <!--forloop.revcouter 倒序打印到1结束-->
+                    <!--forloop.first 循环第一次打印True-->
+                    <!--forloop.last 循环最后一次打印True-->
+                    <td>{{ forloop.counter }}</td>
+                    <td>{{ stu.id }}</td>
+                    <td>
+                        {# if forloop.counter == 1 #}
+
+                        {% ifequal forloop.counter 1 %}
+                            <em style="color:red;">{{ stu.s_name }}</em>
+                        {% else %}
+                            {{ stu.s_name }}
+                        {% endifequal %}
+                    </td>
+                    <td>{{ stu.s_age | add:1 }}</td>
+                    <td>{{ stu.create_time | date:'Y年m月d日 H:m:s' }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
