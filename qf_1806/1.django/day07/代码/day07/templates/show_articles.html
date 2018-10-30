@@ -1,0 +1,12 @@
+
+{% extends 'base.html' %}
+
+{% block title %}
+    展示文章
+{% endblock %}
+
+{% block content %}
+    标题: {{ article.title }}
+    描述: {{ article.desc }}
+    图片: <img src="/media/{{ article.img }}">
+{% endblock %}
