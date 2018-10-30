@@ -1,0 +1,15 @@
+
+{% extends 'base.html' %}
+
+{% block content %}
+    <form action="" method="post">
+        姓名: <input type="text" name="name">
+        密码：<input type="password" name="pw">
+        确认密码: <input type="password" name="pw2">
+        <input type="submit" value="提交">
+    </form>
+    <br>
+    姓名错误信息: {{ errors.name }}
+    密码错误信息: {{ errors.pw }}
+    确认密码错误信息: {{ errors.pw2 }}
+{% endblock %}
