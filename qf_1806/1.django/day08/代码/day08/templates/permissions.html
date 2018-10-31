@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <!-- 通过用户查询组，组查询权限 -->
+    {{ user }}
+    {% for permission in user.groups.all.0.permissions.all %}
+        {{ permission.codename }}
+    {% endfor %}
+    <!-- 通过用户直接查找权限-->
+    <br>
+    {% for per in user.user_permissions.all %}
+        {{ per.codename }}
+    {% endfor %}
+</body>
+</html>
