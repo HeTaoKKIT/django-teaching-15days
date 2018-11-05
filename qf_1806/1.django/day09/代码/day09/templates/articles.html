@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>文章列表页面</title>
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+    <script type="text/javascript">
+        $.ajax({
+            url:'/app/article/',
+            type:'GET',
+            dataType:'json',
+            success:function(data){
+                var table_html = '<table><thead><th>id</th>'
+                table_html += '<th>title</th><th>操作</th></thead><tbody>'
+
+                for(var i=0; i<data.length; i++){
+                    table_html += '<tr><td>' + data[i].id
+                    table_html += '</td><td>' + data[i].title
+                    table_html += '</td><td><a onclick="add_article();">创建</a>'
+                    table_html += '  <a onclick="delete_article(' + data[i].id + ');">删除</a>'
+                    table_html += '</td></tr>'
+                }
+                table_html += '</tbody></table>'
+
+                $('.art_class').html(table_html)
+            },
+            error:function(data){
+                alert('请求失败')
+            }
+        })
+
+        function delete_article(id){
+            $.ajax({
+                url: '/app/article/' + id + '/',
+                type: 'DELETE',
+                dataType: 'json',
+                success:function(data){
+                    alert('删除成功')
+                },
+                error:function(data){
+                    alert('删除失败')
+                }
+            })
+        }
+
+        function add_article(){
+            var form_html = '<form action="">'
+            form_html += "{% csrf_token %}"
+            form_html += '标题:<input type="text" name="title">'
+            form_html += '描述:<input type="text" name="desc">'
+            form_html += '<input type="button" value="提交" onclick="add();">'
+            form_html += '</form>'
+            $('.add_class').html(form_html)
+        }
+
+        function add(){
+            var title = $('input[name="title"]').val()
+            var desc = $('input[name="desc"]').val()
+            var csrf = $('input[name="csrfmiddlewaretoken"]').val()
+            $.ajax({
+                url: '/app/article/',
+                type: 'POST',
+                data: {'title': title, 'desc': desc},
+                headers:{'X-CSRFToken': csrf},
+                dataType:'json',
+                success:function(data){
+                    alert('创建成功')
+                },
+                error: function(data){
+                    alert('创建失败')
+                }
+            })
+        }
+
+    </script>
+</head>
+<body>
+    <div class="art_class"></div>
+    <div class="add_class"></div>
+</body>
+</html>

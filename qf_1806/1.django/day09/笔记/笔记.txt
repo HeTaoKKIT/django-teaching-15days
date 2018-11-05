@@ -1,0 +1,44 @@
+HTTP请求方式:
+
+	GET : 获取数据
+	POST: 创建数据
+	PUT： 用于修改数据（修改全部属性）
+	PATCH： 用于修改数据（修改部分属性）
+	DELETE： 删除数据
+
+POST http://127.0.0.1/api/student/
+
+GET http://127.0.0.1/api/student/1/
+
+PUT http://127.0.0.1/api/student/1/
+
+PATCH http://127.0.0.1/api/student/1/
+
+DELETE http://127.0.0.1/api/student/1/
+
+
+DELETE http://127.0.0.1:8080/app/article/[id]/
+
+# 常规
+	$.ajax({
+		url: '127.0.0.1:8080/app/article/',
+		type: 'POST',
+		data: {'title':'coco', 'desc': '123456'},
+		dataType: 'json',
+		success: funtions(msg){
+
+		},
+		error：function(data){
+
+		}
+	})
+
+# 简略版
+
+	$.get(url, function(data){
+
+	})
+
+	$.post(url, data, function(data){
+
+	})
