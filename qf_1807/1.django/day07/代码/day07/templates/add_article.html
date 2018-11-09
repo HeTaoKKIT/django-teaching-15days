@@ -1,0 +1,21 @@
+
+{% extends 'base.html' %}
+
+{% block title %}
+    添加文章页面
+{% endblock %}
+
+{% block content %}
+    {{ form.errors.title }}
+    {{ form.errors.desc }}
+    {{ form.errors.content }}
+    <form action="" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <p>标题: <input type="text" name="title"></p>
+        <p>简短描述: <input type="text" name="desc"></p>
+        <p>内容: <textarea name="content"></textarea> </p>
+        <p>首图: <input type="file" name="icon"></p>
+        <input type="submit" value="提交">
+    </form>
+
+{% endblock %}

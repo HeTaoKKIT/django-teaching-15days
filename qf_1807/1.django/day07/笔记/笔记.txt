@@ -1,0 +1,50 @@
+
+day7: 表单验证、分页、图片上传
+
+# 表单验证
+	
+	## 定义表单
+    class RegisterForm(forms.Form):
+    	username = forms.Charfiled(max_length=8,
+    								min_length=4,
+    								required=True,
+    								error_messages={
+    									'required': '账号必填'，
+    									'max_length': '账号不能超过8位',
+    									'min_length': '账号不能少于4位'
+    								}
+    								)
+
+    ## 使用表单
+    	form = RegisterForm(request.POST, request.FILES)
+    	form.is_valid(): 验证是否成功或者失败
+    	form.errors: 获取验证失败的错误信息
+
+# 分页
+
+	## 使用切片进行分页
+	## 使用Paginator进行分页
+		p = Paginator(需要分页的总数据，一页的条数)
+		page = p.page(获取那一页的页码)
+
+		当前页: page.number
+		当前有多少页: page.p.num_pages
+		一共多少条数据: page.p.count
+		页码: page.p.page_range
+		上一页: page.has_previous
+		下一页: page.has_next
+		上一页页码: page.previous_page_number
+		下一页页码: page.next_page_number
+
+# 图片上传与展示
+
+    ## 表单中必须有enctype="multipart/form-data"
+    ## 视图函数中获取图片: request.FILES
+    ## 模型中定义保存图片的字段: models.ImageFiled(upload_to=‘art’)
+    ## 在settings.py文件中定义media文件路径: MEDIA_ROOT, MEDIR_URL
+    	MEDIA_URL= '/media/'
+    	MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+    ## 页面解析图片: <img src="/media/{{ icon }}">
+    ## 需要在工程目录的urls.py文件中配置解析media的路由
+    	from django.contrib.staticfiles.urls import static
+    	urlpatterns += static(MEDIA_URL, document_root=MEDIA_ROOT)

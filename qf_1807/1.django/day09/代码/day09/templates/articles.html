@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://code.jquery.com/jquery-3.0.0.min.js"></script>
+    <script>
+        $.ajax({
+            url:'/api/article/art/',
+            type: 'GET',
+            dataType: 'json',
+            success: function(data){
+                for(var i=0; i<data.length; i++){
+                    s = '<p>标题:' + data[i].title
+                    s += ' 描述: ' + data[i].desc
+                    s += ' 内容: ' + data[i].content
+                    s += '<a onclick="del_art(' + data[i].id + ')">删除</a></p>'
+                    $('#content').append(s)
+                }
+            },
+            error: function(data){
+                alert('失败')
+            }
+        })
+
+        function del_art(id){
+            var csrf = $('input[name="csrfmiddlewaretoken"]').val()
+            $.ajax({
+                url: '/api/article/art/' + id + '/',
+                type: 'DELETE',
+                headers:{'X-CSRFToken': csrf},
+                dataType:'json',
+                success: function(data){
+                    location.href='/api/article/list/'
+                },
+                error: function(data){
+                    alert('删除失败')
+                }
+            })
+        }
+
+    </script>
+
+</head>
+
+
+<body>
+    {% csrf_token %}
+    <div id="content">
+
+    </div>
+</body>
+</html>

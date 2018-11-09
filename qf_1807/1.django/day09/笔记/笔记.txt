@@ -1,0 +1,64 @@
+
+day09: 前后分离，ajax
+
+# 前后分离
+	## 规范:
+	djangorestframework框架 
+	地址https://www.django-rest-framework.org/
+
+	## 接口、资源、请求方式
+	接口: 后端返回的是json格式的数据
+		GET /api/student/   查询所有学生信息
+		POST /api/student/  创建学生信息
+		PUT/PATCH  /api/student/id/   修改学生信息
+		DELETE  /api/student/id/      删除学生信息
+		GET /api/student/id/   查询指定id的学生信息
+	资源: 操作数据库中学生的信息，资源叫做student
+	请求方式: GET/POST/PUT/PATCH/DELETE
+
+	## 定义路由
+	获取路由： couter = SimpleRouter()
+	注册资源: couter.register(‘student’，StudentView)
+	获取urls地址: couter.urls
+	解析urls地址: urlpatterns += counter.urls
+
+	## 定义处理路由的业务逻辑
+
+	class StudentView(viewsets.GenericViewSet,
+	                  mixins.ListModelMixin,
+	                  mixins.DestroyModelMixin,
+	                  mixins.CreateModelMixin,
+	                  mixins.UpdateModelMixin,
+	                  mixins.RetrieveModelMixin):
+	    queryset = Student.obejcts.all()
+	    # 序列化
+	    serializer_class = StuSerializer
+
+
+	class StuSerializer(serializers.ModelSerilizer):
+		class Meta:
+			model = Student
+			fileds = ['id', 'name', 'sex']
+
+
+# ajax
+
+	## 最普通最常见的ajax写法
+	{% csrf_token %}
+	var csrf = $('input[name="csrfmiddlewaretoken"]').val()
+
+	$.ajax({
+		url:'',          ### 请求的地址
+		type: '',        ### http请求方式POST/PUT....
+		data:{'name': '小明'，'age': 12}, ### 传递参数
+		dataType:'json',
+		headers:{'X-CSRFToken': csrf},
+		success:function(msg){},
+		error:function(msg){}
+	})
+
+	## 简化版
+	$.get(url, funcion(msg)){}
+	$.post(url, {'name': '小明'}, function(msg){})
+
+# 排除错误: F12(开发者工具)

@@ -1,0 +1,34 @@
+
+{% extends 'base.html' %}
+
+{% block content %}
+    {{ content_h2 }}
+    <!--safe:渲染标签的样式-->
+    {{ content_h2 | safe }}
+    <br>
+    {{ names }}
+    <br>
+    <!--upper:将所有的单词都大写-->
+    {% for name in names %}
+        {{ name | upper }}
+    {% endfor %}
+    <br>
+    <!--lower:将所有单词都小写-->
+    {% for name in names %}
+        {{ name | lower }}
+    {% endfor %}
+    <br>
+    <!--capfirst: 首字母大写-->
+    {% for name in names %}
+        {{ name | capfirst }}
+    {% endfor %}
+    <!--length:计算长度-->
+    {{ 'abcdefg' | length }}
+    <!--first:获取python字符串中的第一个字符-->
+    {{ 'python' | first }}
+    <!--last:获取python字符串中的最后一个字符-->
+    {{ 'python' | last }}
+    <!--add:加数字-->
+    {{ 3 | add:-1 }}
+
+{% endblock %}
