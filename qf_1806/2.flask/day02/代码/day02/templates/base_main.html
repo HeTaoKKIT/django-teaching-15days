@@ -1,0 +1,11 @@
+
+{% extends 'base.html' %}
+
+{% block css %}
+    <!--引入static中的css-->
+    <!--第一种-->
+    <link href="/static/css/style.css" rel="stylesheet">
+    <!--第二种-->
+    <link href="{{ url_for('static', filename='css/style.css') }}" rel="stylesheet">
+{% endblock %}
+

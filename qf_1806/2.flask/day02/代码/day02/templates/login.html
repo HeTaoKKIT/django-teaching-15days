@@ -1,0 +1,22 @@
+
+{% extends 'base_main.html' %}
+
+{% block css %}
+    <!--django中block.super-->
+    {{ super() }}
+{% endblock %}
+
+{% block content %}
+    {% from 'functions.html' import hello %}
+
+    {{ hello() }}
+
+    <p>登录页面</p>
+    <form action="" method="post">
+        姓名: <input type="text" name="username">
+        <br>
+        密码: <input type="text" name="password">
+        <br>
+        <input type="submit" value="提交">
+    </form>
+{% endblock %}

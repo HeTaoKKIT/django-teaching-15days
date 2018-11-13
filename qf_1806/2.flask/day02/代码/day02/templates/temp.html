@@ -1,0 +1,33 @@
+
+{% extends 'base_main.html' %}
+
+{% block content %}
+    {{ content_h2 }}
+    {{ content_h2 | safe }}
+    {{ content_h2 | length }}
+    <br>
+    {{ content_h22 }}
+    {{ content_h22 | safe }}
+    {{ content_h22 | length }}
+    <br>
+
+    {{ title }}
+    {% for i in content %}
+        <!--第一次循环，打印为红色-->
+        <h5>编号:{{ loop.index }}
+            {% if loop.index == 1 %}
+            <span style="color:red;">内容:{{ i }}</span>
+            {% else %}
+                内容:{{ i }}
+            {% endif %}
+            是否循环第一次: {{ loop.first }}
+            是否循环最后一次: {{ loop.last }}
+        </h5>
+    {% endfor %}
+
+    {% from 'functions.html' import hello %}
+    {% from 'functions.html' import say %}
+
+    {{ hello() }}
+    {{ say('小明') }}
+{% endblock %}
