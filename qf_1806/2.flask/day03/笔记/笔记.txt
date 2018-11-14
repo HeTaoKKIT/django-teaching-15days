@@ -1,0 +1,50 @@
+
+day03
+
+1. ORM===> CRUD
+	1）增数据
+		db.session.add(对象)
+		db.session.add_all([对象1，对象2，对象3....])
+		db.session.commit()
+	2) 删数据
+		db.session.delete(对象)
+		db.session.commit()
+	3) 修改
+		模型.query.filter(XXX).update({'key': value, 'key2': value2})
+		db.session.commit()
+	4) 查询
+		filter(模型名.字段 == ‘值’)
+		filter_by(字段 = ‘值’)
+		all(): 获取查询的值，为列表。
+		first(): 获取第一个查询值。
+		get(): 获取主键所在行的对象信息。
+		order_by(): 排序，升序‘id’、降序'-id
+		paginate(): 用于分页，paginate(页码， 每一页数据条数)
+
+		a）模糊查询
+			contains、like、startswith、endswith
+
+		b) 大小于
+			__lt__，__le__，__gt__，__ge__
+		c) 筛选
+			offset()、limit()
+		d) 范围之内
+			in_
+		e）与或非
+			not_、or_、and_
+
+2. 一对多（1:N）
+	
+	class Student(db.Model):
+    	id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    	grade_id = db.Column(db.Integer, db.ForeignKey('grade.id'), nullable=True)
+
+
+
+	class Grade(db.Model):
+	    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+	    student = db.relationship('Student', backref='g')
+
+	注意: 
+		foreign_key外键定义在多(N)的一方。
+		relationship关联关系定义在一(1)的一方
