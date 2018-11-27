@@ -1,0 +1,16 @@
+
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <form action="" method="post">
+        <select name="cou_id">
+            {% for cou in cous %}
+                <option value="{{ cou.id }}">{{ cou.c_name }}</option>
+            {% endfor %}
+        </select>
+        <input type="submit" value="提交">
+    </form>
+
+{% endblock %}
+

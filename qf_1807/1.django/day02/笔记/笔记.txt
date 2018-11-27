@@ -1,0 +1,42 @@
+
+day02：模型
+
+内容: 模型定义、字段定义、约束定义、迁移、ORM、DEBUG
+
+# 模型定义, 在models.py中创建模型类
+
+	class A(models.Model):
+	    name = models.CharFiled(max_length=10)
+	    age = models.IntegerFiled()
+
+	字段定义
+		字符串  CharField
+		整型    IntegerField
+		布尔    BooleanField
+		日期    DateTimeField、DateField、TimeField
+		自增    AutoField
+		图片    ImageField
+	约束定义
+		是否唯一  unique
+		是否为空  null
+		默认值    default
+		默认时间  auto_now_add
+		修改时间  auto_now
+
+# 迁移
+	生成迁移文件: python manage.py makemigrations
+	执行迁移文件: python manage.py migrate
+
+# ORM, 对象关系映射
+
+	# 查询filter() ===> ‘select * form xxx’
+	# 修改update()
+		1. 模型名.objects.update(xxx='asda')
+		2. 模型对象.save()
+	# 删除delete()
+		1. 模型对象.delete()
+	# 创建save()
+		1. 模型名.objects.create(xxx='1212', yyy='334')
+		2. 模型对象.save()
+	
+

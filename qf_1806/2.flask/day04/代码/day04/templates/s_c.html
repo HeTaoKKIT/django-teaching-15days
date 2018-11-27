@@ -1,0 +1,34 @@
+
+{% extends 'base.html' %}
+
+{% block js %}
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script>
+        function del_cou(c_id, s_id){
+            $.ajax({
+                url:'/app/del_stu_cou/' + s_id + '/',
+                dataType:'json',
+                type:'DELETE',
+                data: {'c_id': c_id, 's_id': s_id},
+                success:function(data){
+                    if(data.code == '200'){
+                        location.href='/app/all_stu/'
+                    }
+                },
+                error:function(data){
+                    alert('删除失败')
+                }
+            })
+        }
+
+    </script>
+{% endblock %}
+
+{% block content %}
+    {% for c in cous %}
+        <p>
+            {{ c.c_name }}
+            <a onclick="del_cou({{ c.id }}, {{ s_id }});">删除</a>
+        </p>
+    {% endfor %}
+{% endblock %}

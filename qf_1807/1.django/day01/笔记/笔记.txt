@@ -1,0 +1,49 @@
+
+day01
+内容: 环境virtualenv，django安装，项目搭建，路由配置，模型迁移，用户信息添加。
+
+### virtualenv虚拟环境
+
+	1. virtualenv的创建
+		pip install virtualenv
+
+	2. 使用
+		virtualenv --no-site-packages -p D:\python3\python.exe djenv7
+	3. 激活
+
+		进入：cd djenv7/Script
+		执行： activate
+		退出: deactivate
+	4. 安装django，pymysql
+		安装:pip install django==1.11
+			pip install pymysql
+
+		卸载: pip uninstall django
+
+### 项目搭建
+
+	1. 创建项目
+		django-admin startproject day01
+	2. 创建应用
+		python manage.py startapp app_name
+
+### 路由配置
+
+	在工程目录的urls.py文件中定义路由:
+
+		url(正则, 视图函数)
+
+### 模型迁移，与User信息添加
+
+	1. 在settings.py文件中定义DATABASES。
+	2. 迁移django自带的表
+		python manage.py migrate
+
+	3. 创建超级管理员: 
+		python manage.py createsuperuser
+
+### 启动项目
+
+	python manage.py runserver
+	默认启动的IP是127.0.0.1，默认的端口是8000
+

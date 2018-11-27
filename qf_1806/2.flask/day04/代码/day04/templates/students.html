@@ -1,0 +1,35 @@
+
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <table>
+        <thead>
+            <th>id</th>
+            <th>姓名</th>
+            <th>班级</th>
+            <th>课程</th>
+            <th>操作</th>
+        </thead>
+        <tbody>
+            {% for stu in stus %}
+                <tr>
+                    <td>{{ stu.id }}</td>
+                    <td>{{ stu.s_name }}</td>
+                    <td>{{ stu.g.g_name }}</td>
+                    <td>
+                        {% for c in stu.cou %}
+                            {{ c.c_name }}
+                        {% endfor %}
+                    </td>
+                    <td>
+                        <a href="{{ url_for('app.cous', id=stu.id) }}">添加学生课程</a>
+                        |
+                        <a href="{{ url_for('app.del_stu_cou', id=stu.id) }}">删除学生课程</a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}
