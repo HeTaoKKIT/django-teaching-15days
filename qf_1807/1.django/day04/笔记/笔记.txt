@@ -1,0 +1,59 @@
+
+day04:
+
+# 模型
+	一对一: OneToOneField
+	一对多: Foreignkey
+	多对多: ManyToManyFiled
+
+	class Student:
+		#  OneToOneField定义在任何一方都可以
+		stu_info = OneToOneField(StuInfo) 
+
+		# Foreignkey必须定义在多的一方
+		g = ForeignKey(Grade)
+
+		# ManyToManyFiled定义在任何一方都可以
+		c = ManyToManyFiled(Course)
+	class StuInfo:
+		id = AutoField()
+	class Grade:
+		id = AutoField()
+	class Course:
+		id = AutoField()
+
+	已知学生对象stu： 查询班级: stu.g   查询拓展表: stu.stu_info   查询课程: stu.c
+
+	已知拓展表stu_info对象： 查询学生: stu_info.student
+	已知班级grade对象: 查询学生: grade.student_set
+	已知课程cou对象: 查询学生: cou.student_set
+
+
+# 模板
+
+	解析标签:  
+		{% 标签 %}
+		标签有for、if、comment、static、ifequal、block、extends
+	解析变量: 
+		{{ 变量 }}
+	循环: 
+		forloop.counter
+		forloop.counter0
+		forloop.revcounter
+		forloop.revcounter0
+		forloop.first
+		forloop.last
+	继承:
+		{% block xxx %}
+			{{ block.super }}
+		{% endblock %}
+	静态加载:
+		STATICFILES_DIRS = [
+			os.path.join(BASE_DIR, 'static')
+		]
+		第一种方式:
+		<link href="/static/css/index.css">
+		第二种方式:
+		{% load static %}
+		{% static 'css/index.css' %}
+

@@ -1,0 +1,48 @@
+
+day03
+
+# CRUD中的查询、模型定义与迁移、一对一关联
+
+### 查询
+
+	filter(条件): 查询满足条件的信息
+	exclude(条件): 过滤掉满足条件的信息
+	count(): 计算个数
+	exists(): 是否存在
+	all()： 查询所有
+	get(): 查询满足条件的唯一一个对象信息
+	first(): 结果中的第一个
+	last(): 结果中的最后一个
+	values(): 以键值对的形式获取对象信息
+	order_by(): 排序
+
+### 运算符
+	
+	模糊: icontains，startswith,endswith
+	大小于: gt，lt，gte，lte
+	范围: in
+	主键： pk
+
+### 聚合aggragate
+	
+	from django.db.models imort Max, Min, Avg, Sum, Count
+	
+	模型.objects.all().aggragate(Max('age'))
+
+### F()/Q()
+	F(): 对字段进行计算
+	Q(): 与或非
+
+### 模型一对一
+
+	定义一对一: OneToOneField()
+
+	class A:
+		b1 =  OneToOneField(B)
+
+	class B():
+		name = CharField()
+
+	正向查询，已知A对象a，查询B对象: a.b1
+
+	反向查询，已知B对象b，查询A对象: b.a

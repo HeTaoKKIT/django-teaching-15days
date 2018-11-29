@@ -1,0 +1,59 @@
+
+{% extends 'base_main.html' %}
+
+{% block title %}
+    index
+{% endblock %}
+
+{% block css %}
+    <!--<link href="/static/css/index.css" rel="stylesheet">-->
+
+    {% load static %}
+    <link href="{% static 'css/index.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block js %}
+    {{ block.super }}
+    <script src="xxx.js"></script>
+{% endblock %}
+
+{% block content %}
+    <p>我是首页</p>
+    {{ students }}
+    <!-- 注解1: -->
+
+    {# 注解2: {% for标签用于循环 %} {% endfor结束标签(必写) %} #}
+    {% comment %}
+        <p>我是注解3</p>
+        <h3>我是注解4</h3>
+    {% endcomment %}
+    <br>
+    <table>
+        <thead>
+            <th>编号</th>
+            <th>id</th>
+            <th>姓名</th>
+            <th>年龄</th>
+            <th>班级</th>
+        </thead>
+        <tbody>
+            {% for stu in students %}
+            <tr>
+                <td>{{ forloop.first }}</td>
+                <td>{{ forloop.last }}</td>
+                <td>{{ forloop.revcounter0 }}</td>
+                <td>{{ stu.id }}</td>
+                <td {% if forloop.counter == 1 %} style="color:red;" {% endif %}>
+                    {{ stu.name }}
+                </td>
+                <td {% ifequal forloop.counter 1 %} style="font-size:10px;" {% endifequal %}>
+                    {{ stu.age }}
+                </td>
+                <td>{{ stu.g.g_name }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+
+    </table>
+
+{% endblock %}
