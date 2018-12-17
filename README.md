@@ -101,3 +101,5 @@
   - [第二周第一天](qf_1807/1.django/day06/笔记/笔记.txt)
   - [第二周第二天](qf_1807/1.django/day07/笔记/笔记.txt)
   - [第二周第四天](qf_1807/1.django/day09/笔记/笔记.txt)
+  - [生鲜项目](qf_1807/1.django/fresh_shop)
+

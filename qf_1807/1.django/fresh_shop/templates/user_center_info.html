@@ -1,0 +1,41 @@
+
+{% extends 'base_main.html' %}
+
+{% block title %}
+    天天生鲜-用户中心
+{% endblock %}
+
+{% block search %}
+	<div class="search_bar clearfix">
+		<a href="index.html" class="logo fl"><img src="/static/images/logo.png"></a>
+		<div class="sub_page_name fl">|&nbsp;&nbsp;&nbsp;&nbsp;用户中心</div>
+		<div class="search_con fr">
+			<input type="text" class="input_text fl" name="" placeholder="搜索商品">
+			<input type="button" class="input_btn fr" name="" value="搜索">
+		</div>		
+	</div>
+{% endblock %}
+
+{% block content %}
+	<div class="main_con clearfix">
+		<div class="left_menu_con clearfix">
+			<h3>用户中心</h3>
+			<ul>
+				<li><a href="user_center_info.html" class="active">· 个人信息</a></li>
+				<li><a href="user_center_order.html">· 全部订单</a></li>
+				<li><a href="{% url 'user:user_site' %}">· 收货地址</a></li>
+			</ul>
+		</div>
+		<div class="right_content clearfix">
+            <div class="info_con clearfix">
+            <h3 class="common_title2">基本信息</h3>
+                <ul class="user_info_list">
+                    <li><span>用户名：</span>{{ user.username }}</li>
+                    <li><span>联系邮箱：</span>{{ user.email }}</li>
+                </ul>
+            </div>
+		</div>
+	</div>
+
+{% endblock %}
+
