@@ -1,0 +1,56 @@
+
+{% extends 'base.html' %}
+
+{% block title %}
+    学生列表页面
+{% endblock %}
+
+{% block content %}
+    <!--<p><a href="/app/add/">添加学生信息</a></p>-->
+    <p><a href="{{ url_for('app.stu_add') }}">添加学生信息</a></p>
+    <table>
+        <thead>
+            <th>id</th>
+            <th>姓名</th>
+            <th>年龄</th>
+            <th>电话</th>
+            <th>操作</th>
+        </thead>
+        <tbody>
+            {% for stu in students %}
+                <tr>
+                    <td> {{ stu.id }} </td>
+                    <td> {{ stu.s_name }} </td>
+                    <td> {{ stu.s_age }} </td>
+                    <td> {{ stu.s_phone }} </td>
+                    <td>
+                        <a href="{{ url_for('app.stu_edit', id=stu.id) }}">编辑</a>
+                        |
+                        <a href="{{ url_for('app.stu_del', id=stu.id) }}">删除</a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <p>
+        {% if paginate.has_prev %}
+            <a href="{{ url_for('app.stu_list') }}?page={{ paginate.prev_num }}">上一页</a>
+        {% endif %}
+
+        {% for i in paginate.iter_pages() %}
+            {% if i %}
+                <a href="{{ url_for('app.stu_list') }}?page={{ i }}">{{ i }}</a>
+            {% else %}
+                ...
+            {% endif %}
+        {% endfor %}
+
+        {% if paginate.has_next %}
+            <a href="{{ url_for('app.stu_list') }}?page={{ paginate.next_num }}">下一页</a>
+        {% endif %}
+
+        当前{{ paginate.page }}页,
+        共{{ paginate.pages }}页,
+        一共{{ paginate.total }}条数据
+    </p>
+{% endblock %}

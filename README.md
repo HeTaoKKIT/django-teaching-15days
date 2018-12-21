@@ -103,3 +103,10 @@
   - [第二周第四天](qf_1807/1.django/day09/笔记/笔记.txt)
   - [生鲜项目](qf_1807/1.django/fresh_shop)
 
+  2. flask笔记整理
+  - [第一周第一天](qf_1806/2.flask/day01/xmain)
+  - [第一周第二天](qf_1806/2.flask/day02/xmain)
+  - [第一周第三天](qf_1806/2.flask/day03/xmain)
+  - [第一周第四天](qf_1806/2.flask/day04/xmain)
+  - [第一周第五天](qf_1806/2.flask/day05/xmain)
+

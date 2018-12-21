@@ -1,0 +1,58 @@
+
+{% extends 'base_main.html' %}
+
+{% block title %}
+    temp子模板
+{% endblock %}
+
+{% block js %}
+    {{ super() }}
+    <script >xxxxx</script>
+{% endblock %}
+
+{% block css %}
+    <!--<link href="/static/css/style.css" rel="stylesheet">-->
+
+    <link href="{{ url_for('static', filename='css/style.css') }}" rel="stylesheet">
+
+{% endblock %}
+
+{% block content %}
+    <p>我是temp子模板</p>
+    {{ c }}
+    <br>
+    {% for i in c %}
+        <p>{{ loop.first }} || {{ loop.last }} || {{ loop.revindex }} || {{ i }}</p>
+    {% else %}
+        <p>没有数据</p>
+    {% endfor %}
+
+    <!--宏定义-->
+    {% from 'functions.html' import say %}
+    {% from 'functions.html' import good_list %}
+
+    {{ say() }}
+
+    {{ good_list('1', '草莓', '10', '1000') }}
+    {{ good_list('2', '苹果', '5', '1000') }}
+
+    {{ content_h2 | safe }}
+    <br>
+    {{ content_h2_new | striptags }}
+    <br>
+    {{ content_h2 | length }}
+    <br>
+    {{ content_h2_new | trim | length }}
+    <br>
+    {{ 'python' | upper }}
+    {{ 'Python' | lower }}
+    <br>
+    {% if nums == 10 %}
+        {{ nums }}
+    {% endif %}
+    <br>
+
+
+{% endblock %}
+
+

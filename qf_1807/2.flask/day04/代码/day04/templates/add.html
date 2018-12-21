@@ -1,0 +1,15 @@
+
+{% extends 'base.html' %}
+
+{% block title %}
+    添加学生页面
+{% endblock %}
+
+{% block content %}
+    <form action="" method="post">
+        <p>姓名: <input type="text" name="username" value="{{ stu.s_name }}"></p>
+        <p>手机号: <input type="text" name="phone" value="{{ stu.s_phone }}"></p>
+        <p>年龄: <input type="text" name="age" value="{{ stu.s_age }}"></p>
+        <p><input type="submit" value="提交"></p>
+    </form>
+{% endblock %}
