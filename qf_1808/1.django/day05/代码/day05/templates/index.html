@@ -1,0 +1,68 @@
+
+{% extends 'base_main.html' %}
+
+{% block css %}
+    <!--引入的第一种形式-->
+    <link rel="stylesheet" href="/static/css/style.css">
+    <!--引入的第二种形式-->
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+{% endblock %}
+
+{% block js %}
+    {{ block.super }}
+{% endblock %}
+
+{% block content %}
+    <a href="/user/logout/">退出</a>
+
+    <!--过滤器, 管道符‘|’-->
+    <p>{{ b | safe }}</p>
+    <p>{{ 'python' | upper }}</p>
+    <p>{{ 'PythoN' | lower }}</p>
+    <p>{{ 4 | add:'-1' }}</p>
+    <p>{{ 'python' | capfirst }}</p>
+    <p>{{ 'helloworld' | title }}</p>
+    <p>{{ '' | default:'无' }}</p>
+    <p>{{ 'python' | first }}</p>
+    <p>{{ 'python' | last }}</p>
+    <p>{{ 'python' | random }}</p>
+
+
+    <p>模板内容学习</p>
+    <p>{{ name }}</p>
+    {% if name %}
+        {{ name }}
+    {% else %}
+        name为空
+    {% endif %}
+    <br>
+    {% if a %}
+        {{ a }}
+    {% else %}
+        a变量不存在
+    {% endif %}
+    <br>
+    {% for i in a %}
+        {# <p {% if foloop.counter == 1 %} style="font-weight:bold;"> #}
+        {# hahahha zsdasd adsdf #}
+
+        {% comment %}
+            <p>今天天气正好</p>
+            <p>asjgdjoagf</p>
+        {% endcomment %}
+
+        <!--电话-->
+        <!--<p {% if forloop.first %} style="font-weight:bold;" {% endif %}>-->
+
+        <p {% ifequal forloop.counter 1 %} style="font-weight:bold;" {% endifequal %}>
+            编号:{{ forloop.revcounter }}  成绩: {{ i }}
+        </p>
+    {% empty %}
+        a变量为空
+    {% endfor %}
+    <br>
+{% endblock %}
+
+
+

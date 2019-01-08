@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <p>今天天气真好</p>
+    {{ a }}
+    <br>
+    {% for stu in a %}
+        <p>
+            姓名: {{ stu.s_name }}
+            年龄:{{ stu.s_age }}
+            班级: {{ stu.g.g_name }}
+            选课:
+                {% for c in stu.cou.all %}
+                    {{ c.c_name }}
+                {% endfor %}
+        </p>
+    {% endfor %}
+</body>
+</html>
